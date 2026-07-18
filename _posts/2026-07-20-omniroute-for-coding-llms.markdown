@@ -67,4 +67,4 @@ First, go through steps 1-3 above. Then:
 Like everything in engineering, there are tradeoffs. When you're working with free models, you need to deal with higher latency and availability. For me, I'm not currently working on huge code bases (like Microsoft Teams or Loop), so the tradeoffs swing the right way for me.
 
 # Conclusion
-That should get you started! Hopefully this gives you enough info so you can pattern match to other harnesses. The OmniRoute is OSS, and they welcome contributions if you find any issues or if you have any suggestions!
+That should get you started! Hopefully this gives you enough info so you can pattern match to other harnesses. OmniRoute is Open Source, and they welcome contributions if you find any issues or if you have any suggestions!
