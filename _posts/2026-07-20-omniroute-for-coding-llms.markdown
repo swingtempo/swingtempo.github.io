@@ -17,6 +17,7 @@ With OmniRoute, you can leverage multiple LLM providers with your favorite CLI o
 * `localhost` also serves an OpenAI-compatible API that a harness can hit.
 * Configure your favorite harness to route requests to your `localhost`. I was chagrined to see that GitHub Copilot (CLI and in VSCode) do not allow you to switch endpoints that I could see. 
 * Each request sends up a model to use. Instead of using a well-known model name (e.g. `gpt-5.6-sol`), the client sends up a "model" that only OmniRoute knows (like `auto/best-coding`). Use one that's [built-in](https://github.com/diegosouzapw/OmniRoute/blob/735e2d0783bdecc1aae5cea158d8e8192eeff31a/src/domain/assessment/types.ts#L231) to OmniRoute, or you can add your own.
+  * OmniRoute suggests starting with the `auto` model.
 
 The beauty behind OmniRoute is this:
 ```
@@ -26,6 +27,8 @@ Every computer science problem can be solved by just another layer of abstractio
 As a developer working with an agent, you can choose which models you want on the fly. For your specific configuration, you can pick and choose from multiple paid and free models out there. This extra layer of abstraction allows OmniRoute to support:
 * Smart failure modes - if you hit a 429 or timeout in the middle of a chat, you won't lose context. 
 * RTK + Caveman compression to optimize your model usage.
+
+And since the code is open source, you as a developer can make changes to decorate any requests to fulfill your specific needs.
 
 # OK, how do I get started with OmniRoute and Codex?
 One of the problems I had to work through when I first started using OmniRoute is "how do I get started"? So the below is kind of a quickstart for users. I'll start with Codex for a CLI, and Continue.dev for VSCode integration.
