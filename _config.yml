@@ -19,9 +19,10 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Jay Ongg's Blog
-email: jayongg@gmail.com
+email: jayongg@alum.mit.edu
 description: >- # this means to ignore newlines until "baseurl:"
-  Jay Ongg's personal blog.
+  I'm an ex-Microsoft Group Engineering Manager and have a passion for learning new tech and how we can democratize the benefits of AI.   
+
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://swingtempo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: realjayongg
@@ -32,6 +33,9 @@ linkedin_username: jayongg
 theme: minima
 plugins:
   - jekyll-feed
+
+include:
+  - assets/images
 
 # Exclude from processing.
 # The following items will not be processed, by default.
