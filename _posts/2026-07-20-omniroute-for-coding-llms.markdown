@@ -7,9 +7,9 @@ permalink: /omniroute-for-coding-llms
 ---
 # Free cloud coding agent?
 
-One of the things I miss from Microsoft is the access to Github Copilot CLI with nigh-unlimited token usage. I started looking into cost-effective ways to do my own prompting and code changes without needing to buy a heavy GPU to run local LLMs. In the meantime, I discovered an Open Source project, [OmniRoute](https://omniroute.online) ([GitHub](https://github.com/diegosouzapw/OmniRoute)).
+One of the things I miss from Microsoft is the access to Github Copilot CLI with nigh-unlimited token usage. I looked for cost-effective ways to do my own prompting and code changes without needing to buy a heavy GPU to run local LLMs. That's how I discovered an Open Source project, [OmniRoute](https://omniroute.online) ([GitHub](https://github.com/diegosouzapw/OmniRoute)).
 
-# What's OmniRoute?
+# So, what's OmniRoute?
 ![Server routing LLM messages to different LLMs]({{ "/assets/images/omniroute-for-coding-llms/omniroute-routing-llm-for-developer.png" | relative_url }})
 
 With OmniRoute, you can leverage multiple LLM providers with your favorite CLI or harness (like Claude Code, Codex, or Continue.dev). This is what happens:
@@ -35,13 +35,13 @@ As a developer working with an agent, you can choose which models you want on th
 
 And since the code is open source, you as a developer can make changes to decorate any requests to fulfill your specific needs.
 
-# OK, how do I get started with OmniRoute and Codex?
+# OK, how do I get it working with Codex?
 One of the problems I had to work through when I first started using OmniRoute is "how do I get started"? So the below is kind of a quickstart for users. I'll start with Codex for a CLI, and Continue.dev for VSCode integration.
 
 1. Install OmniRoute with `npm install -g omniroute`.
 2. Run `omniroute`, this will open up the dashboard. Default password is `CHANGEME`.
 3. From the left rail, click on "[API Keys](http://localhost:20128/dashboard/api-manager)" and create a new API key. Record it separately since it will not be visible again.
-4. In your operating system, set the environment variable globally. e.g in Windows:
+4. In your operating system, set the environment variable persistently. e.g in Windows:
 ```
 setx OMNIROUTE_API_KEY <APIKEY>
 ```
@@ -55,7 +55,7 @@ You can do this manually via `codex` and command line parameters to specify endp
 ![Screenshot from dashboard]({{ "/assets/images/omniroute-for-coding-llms/successful-log-ux.png" | relative_url }})
 Clicking through shows you more details. As a side note, you can see what info gets sent up from your favorite harness. Helpful from an educational perspective.
 
-# But I like IDEs
+# But I like IDEs!
 I couldn't figure out a way to get VSCode's native GitHub chat to point to a different endpoint. I ended up downloading the [Continue.dev](https://continue.dev) extension and used that instead. OmniRoute doesn't auto-configure this for you, so it's a little bit involved.
 
 First, go through steps 1-3 above. Then:
@@ -74,5 +74,5 @@ First, go through steps 1-3 above. Then:
 # Tradeoffs
 Like everything in engineering, there are tradeoffs. When you're working with free models, you need to deal with higher latency and availability. For me, I'm not currently working on huge code bases (like Microsoft Teams or Loop), so the tradeoffs swing the right way for me.
 
-# Conclusion
+# Closing thoughts
 That should get you started! Hopefully this gives you enough info so you can pattern match to other harnesses. OmniRoute is Open Source, and they welcome contributions if you find any issues or if you have any suggestions!
