@@ -21,7 +21,7 @@
 title: Jay Ongg's Blog
 email: jayongg@alum.mit.edu
 description: >- # this means to ignore newlines until "baseurl:"
-  I'm an ex-Microsoft Group Engineering Manager and have a passion for learning new tech and how we can democratize the benefits of AI.   
+  Former Microsoft, learn new tech, democratize AI.
 
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://swingtempo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
