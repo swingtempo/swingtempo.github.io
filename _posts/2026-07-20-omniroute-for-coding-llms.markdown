@@ -6,7 +6,7 @@ categories: ai agents free omniroute
 ---
 # Free cloud coding agent?
 
-One of the things I miss from Microsoft is the access to Github Copilot CLI with nigh-unlimited token usage. I started looking into cost-effective ways to do my own prompting and code changes without buying a heavy GPU to run local LLMs (which I may still do). In the meantime, I discovered an Open Source project, [OmniRoute](https://omniroute.online) ([GitHub](https://github.com/diegosouzapw/OmniRoute)).
+One of the things I miss from Microsoft is the access to Github Copilot CLI with nigh-unlimited token usage. I started looking into cost-effective ways to do my own prompting and code changes without needing to buy a heavy GPU to run local LLMs. In the meantime, I discovered an Open Source project, [OmniRoute](https://omniroute.online) ([GitHub](https://github.com/diegosouzapw/OmniRoute)).
 
 # What's OmniRoute?
 ![Server routing LLM messages to different LLMs]({{ "/assets/images/omniroute-for-coding-llms/omniroute-routing-llm-for-developer.png" | relative_url }})
@@ -29,6 +29,8 @@ Every computer science problem can be solved by just another layer of abstractio
 As a developer working with an agent, you can choose which models you want on the fly. For your specific configuration, you can pick and choose from multiple paid and free models out there. This extra layer of abstraction allows OmniRoute to support:
 * Smart failure modes - if you hit a 429 or timeout in the middle of a chat, you won't lose context. 
 * RTK + Caveman compression to optimize your model usage.
+* Not to mention, you can use the same harness/CLI, and select which backend you want to hit by switching your model/combo.
+  * For example, I'm OK with using the cloud-based services for most queries, but I want to hit my local LLM to do my taxes.
 
 And since the code is open source, you as a developer can make changes to decorate any requests to fulfill your specific needs.
 
