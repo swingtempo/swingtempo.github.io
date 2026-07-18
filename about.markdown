@@ -4,15 +4,10 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+This is the blog for Jay Ongg. I'm an ex-Microsoft Group Engineering Manager and MIT graduate. I left Microsoft voluntarily on July 1, 2026. I started this blog to jot down notes on the industry and any other random thoughts. Feel free to reach out if you have any questions.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+I also provide coaching and mentoring for engineers and engineering managers. [Book a session](https://jayonggllc.github.io/consulting-site)
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Email: [jayongg@gmail.com](mailto:jayongg@gmail.com)
 
-
-[jekyll-organization]: https://github.com/jekyll
+[LinkedIn](https://linkedin.com/in/jayongg)
