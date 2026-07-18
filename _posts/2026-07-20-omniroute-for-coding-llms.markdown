@@ -16,8 +16,10 @@ With OmniRoute, you can leverage multiple LLM providers with your favorite CLI o
 * OmniRoute exposes a `localhost:20128` endpoint with a dashboard so you can configure which providers to leverage, like OpenAI, Claude, or Chipotle (not kidding). You specify the priority of the LLMs - you can mix paid and free providers. There are 236 available as of this date.
 * `localhost` also serves an OpenAI-compatible API that a harness can hit.
 * Configure your favorite harness to route requests to your `localhost`. I was chagrined to see that GitHub Copilot (CLI and in VSCode) do not allow you to switch endpoints that I could see. 
-* Each request sends up a model to use. Instead of using a well-known model name (e.g. `gpt-5.6-sol`), the client sends up a "model" that only OmniRoute knows (like `auto/best-coding`). Use one that's [built-in](https://github.com/diegosouzapw/OmniRoute/blob/735e2d0783bdecc1aae5cea158d8e8192eeff31a/src/domain/assessment/types.ts#L231) to OmniRoute, or you can add your own.
-  * OmniRoute suggests starting with the `auto` model.
+* Each request sends up a model to use. Instead of using a well-known model name (e.g. `gpt-5.6-sol`), the client sends up a "model" (aka "combo") that only OmniRoute knows (like `auto/best-coding`). Use one that's [built-in](https://github.com/diegosouzapw/OmniRoute/blob/735e2d0783bdecc1aae5cea158d8e8192eeff31a/src/domain/assessment/types.ts#L231) to OmniRoute, or you can add your own.
+  * OmniRoute suggests starting with the `auto` combo.
+  * OmniRoute will try all providers associated with a combo for your prompts, with smart caching of what works.
+  * You can provide API keys for paid models if you want to use them in your combo.
 
 The beauty behind OmniRoute is this:
 ```
