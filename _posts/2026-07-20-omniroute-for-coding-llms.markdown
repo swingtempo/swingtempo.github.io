@@ -3,6 +3,7 @@ layout: post
 title:  "OmniRoute for coding LLMs"
 date:   2026-07-20 02:12:01 -0700
 categories: ai agents free omniroute
+permalink: /omniroute-for-coding-llms
 ---
 # Free cloud coding agent?
 
