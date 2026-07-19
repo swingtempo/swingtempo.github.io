@@ -52,7 +52,9 @@ omniroute launch-codex --model auto
 ```
 You can do this manually via `codex` and command line parameters to specify endpoint and api key, but with the above command, OmniRoute takes care of everything for you.
 
-6. (optional) You can see the details of the request by clicking [Monitoring/Logs](http://localhost:20128/dashboard/logs) from the left sidebar:
+6. The CLI should be sending request to OmniRoute now.
+
+7. (optional) You can see the details of the request by clicking [Monitoring/Logs](http://localhost:20128/dashboard/logs) from the left sidebar:
 ![Screenshot from dashboard]({{ "/assets/images/omniroute-for-coding-llms/successful-log-ux.png" | relative_url }})
 Clicking through shows you more details. As a side note, you can see what info gets sent up from your favorite harness. This is helpful from an educational and debugging perspective.
 
