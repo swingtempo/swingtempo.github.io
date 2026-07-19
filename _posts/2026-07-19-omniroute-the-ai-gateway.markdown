@@ -42,17 +42,24 @@ One of the problems I had to work through when I first started using OmniRoute i
 1. Install OmniRoute with `npm install -g omniroute`.
 2. Run `omniroute`, this will open up the dashboard. Default password is `CHANGEME`.
 3. From the left sidebar, click on "[API Keys](http://localhost:20128/dashboard/api-manager)" and create a new API key. Record it separately since it will not be visible again.
-4. In your operating system, set the environment variable persistently. e.g., in Windows:
+4. In your operating system, set the environment variable persistently.
+For macOS/Linux (add to your `~/.bashrc` or `~/.zshrc`):
+```bash
+export OMNIROUTE_API_KEY="<APIKEY>"
+```
+
+For Windows (Command Prompt):
 ```
 setx OMNIROUTE_API_KEY <APIKEY>
 ```
+
 5. Now let's launch Codex, but configured for OmniRoute. Run:
 ```
 omniroute launch-codex --model auto
 ```
 You can do this manually via `codex` and command line parameters to specify endpoint and api key, but with the above command, OmniRoute takes care of everything for you.
 
-6. The CLI should be sending request to OmniRoute now.
+6. The CLI should be sending requests to OmniRoute now.
 
 7. (optional) You can see the details of the request by clicking [Monitoring/Logs](http://localhost:20128/dashboard/logs) from the left sidebar:
 ![Screenshot from dashboard]({{ "/assets/images/omniroute-for-coding-llms/successful-log-ux.png" | relative_url }})
