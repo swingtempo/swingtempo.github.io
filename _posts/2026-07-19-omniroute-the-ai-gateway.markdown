@@ -46,7 +46,7 @@ One of the problems I had to work through when I first started using OmniRoute i
 ```
 setx OMNIROUTE_API_KEY <APIKEY>
 ```
-5. Now let's launch Codex, but configured for OmniRoute. Do:
+5. Now let's launch Codex, but configured for OmniRoute. Run:
 ```
 omniroute launch-codex --model auto
 ```
