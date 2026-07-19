@@ -57,7 +57,7 @@ You can do this manually via `codex` and command line parameters to specify endp
 Clicking through shows you more details. As a side note, you can see what info gets sent up from your favorite harness. This is helpful from an educational and debugging perspective.
 
 # But I like IDEs!
-I couldn't figure out a way to get VSCode's native GitHub chat to point to a different endpoint. I ended up downloading the [Continue.dev](https://continue.dev) extension and used that instead. OmniRoute doesn't auto-configure this for you, so it's a little bit involved.
+I couldn't figure out a way to get VSCode's native GitHub chat to point to a different endpoint. I ended up downloading the [Continue.dev](https://marketplace.visualstudio.com/items?itemName=Continue.continue) extension and used that instead. OmniRoute doesn't auto-configure this for you, so it's a little bit involved.
 
 First, go through steps 1-3 above. Then:
 4. In `%USERPROFILE%\.continue\config.yaml` or `~/.continue/config.yaml`, find the `models` data structure. Add the following lines to add the `auto` model config, and replace <APIKEY> with the api key you generated above.
