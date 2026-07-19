@@ -30,6 +30,7 @@ Every computer science problem can be solved by just another layer of abstractio
 As a developer working with an agent, you can choose which models you want on the fly. For your specific configuration, you can pick and choose from multiple paid and free models out there. This extra layer of abstraction allows OmniRoute to support:
 * Smart failure modes - if you hit a 429 or timeout in the middle of a chat, you won't lose context. 
 * [RTK](https://github.com/rtk-ai/rtk) + [Caveman](https://getcaveman.dev/) compression to optimize your model usage.
+* As new models get released, you don't need to update your client configs to use them. Just modify your OmniRoute configuration to leverage them.
 * Not to mention, you can use the same harness/CLI, and select which backend you want to hit by switching your model/combo.
   * For example, I'm OK with using the cloud-based services for most queries, but I want to hit my local LLM to do my taxes.
 
