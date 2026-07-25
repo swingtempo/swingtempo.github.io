@@ -29,6 +29,8 @@ twitter_username: realjayongg
 github_username:  swingtempo # the username of the account on GitHub, e.g. jekyllrb
 linkedin_username: jayongg
 
+future: true
+
 # Build settings
 theme: minima
 plugins:
