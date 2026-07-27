@@ -1,10 +1,15 @@
 ---
 layout: post
-title:  "Taking a break from MAPI articles."
+title:  "T-Mobile Shadow Neo Homescreen"
 date:   2007-10-31 00:00:00 -0700
-categories: windows mobile t-mobile shadow
+categories: windows mobile t-mobile shadow htc
 permalink: /shadow-neo-homescreen
 ---
+
+<div style="background-color: #f0f0f0; border-left: 4px solid #888; padding: 12px 16px; margin-bottom: 24px; font-style: italic; color: #555;">
+  <b>2026-07-27</b> From the archives — this is an old blog post I wrote when I worked on Windows Mobile.
+</div>
+
 # Taking a break from MAPI articles.
 
 Hi everyone, I'd like to move away from Messaging for a bit, and talk a little bit about a project that came to fruition. It was codenamed "Neo" and dogfooded internally, but it's now available to the public!
