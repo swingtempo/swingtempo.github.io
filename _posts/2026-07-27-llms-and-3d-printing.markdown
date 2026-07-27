@@ -4,7 +4,7 @@ title:  "LLMs and 3D printing"
 date:   2026-07-27 02:12:01 -0700
 categories: ai 3d printing scad
 permalink: /llms-and-3d-printing
-image: /assets/images/llms-and-3d-printing/ending-image.png
+image: https://lindybeat.net/assets/images/llms-and-3d-printing/ending-image.png
 ---
 # How to replace a broken handle?
 Last December, I got into 3d printing in order to replace a handle on a poker chip steelcase, the kind of heavy metal case used to store and carry poker chips. The plastic handle snapped off, and rather than buy a whole new case, I figured I'd try to print a replacement. It probably would have been something easy for a CAD expert to figure out (of which I'm not). Here's what broke, and what I replaced it with:
