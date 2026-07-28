@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+
+  // Giscus transparent theme variables
+  --giscus-bg-color: #{$bg-primary};
+  --giscus-bg-overlay: #{$bg-secondary};
+  --giscus-text-color: #{$text-primary};
+  --giscus-text-secondary-color: #{$text-secondary};
+  --giscus-border-color: #{$border-color};
+  --giscus-active-font-color: #{$accent-cyan};
+  --giscus-font-family: #{$font-sans};
+}
+
+body {
+  font-family: $font-sans;
+  background-color: $bg-primary;
+  color: $text-primary;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+// Subtle grid overlay on body
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba($accent-purple, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba($accent-purple, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: $accent-cyan;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $accent-pink;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  color: $text-primary;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2rem; font-weight: 700; }
+h2 { font-size: 1.5rem; font-weight: 600; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+
+p {
+  margin-bottom: 1em;
+  color: $text-secondary;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: $radius-md;
+}
+
+code {
+  font-family: $font-mono;
+  font-size: 0.875em;
+  background: $bg-elevated;
+  padding: 0.15em 0.4em;
+  border-radius: $radius-sm;
+  color: $accent-pink;
+}
+
+pre {
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  padding: 1.25em;
+  overflow-x: auto;
+  margin: 1.5em 0;
+
+  code {
+    background: none;
+    padding: 0;
+    color: $text-primary;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+}
+
+blockquote {
+  border-left: 3px solid $accent-purple;
+  background: rgba($accent-purple, 0.06);
+  padding: 0.8em 1.2em;
+  margin: 1.5em 0;
+  border-radius: 0 $radius-sm $radius-sm 0;
+
+  p {
+    color: $text-secondary;
+    margin-bottom: 0;
+  }
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: $border-color;
+  margin: 2em 0;
+}
+
+::selection {
+  background: rgba($accent-pink, 0.3);
+  color: $text-primary;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-primary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $border-color;
+  border-radius: 4px;
+
+  &:hover {
+    background: $text-muted;
+  }
+}

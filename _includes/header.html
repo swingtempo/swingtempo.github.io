@@ -1,0 +1,14 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-title" href="{{ '/' | relative_url }}">
+      <span class="title-dot"></span>
+      {{ site.title | escape }}
+    </a>
+    <nav class="site-nav">
+      {%- for link in site.footer_links -%}
+        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.label }}</a>
+      {%- endfor -%}
+      <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+  </div>
+</header>

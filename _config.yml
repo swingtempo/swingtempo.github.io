@@ -21,7 +21,7 @@
 title: Jay Ongg's Blog
 email: jayongg@alum.mit.edu
 description: >- # this means to ignore newlines until "baseurl:"
-  Former Microsoft. Let's learn new tech and democratize AI.
+  Let's learn new tech and democratize AI.
 
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://swingtempo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -36,9 +36,12 @@ footer_links:
 future: true
 
 # Build settings
-theme: minima
 plugins:
   - jekyll-feed
+
+sass:
+  sass_dir: _sass
+  style: compressed
 
 include:
   - assets/images

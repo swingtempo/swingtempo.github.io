@@ -7,7 +7,8 @@ permalink: /shadow-neo-homescreen
 ---
 
 <div style="background-color: #f0f0f0; border-left: 4px solid #888; padding: 12px 16px; margin-bottom: 24px; font-style: italic; color: #555;">
-  <b>2026-07-27</b> From the archives — this is an old blog post I wrote when I worked on Windows Mobile.
+  From the archives — this is an old blog post I wrote when I worked on Windows Mobile.
+  (The exact date of publication may not be accurate)
 </div>
 
 # Taking a break from MAPI articles.
