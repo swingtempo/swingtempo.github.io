@@ -1,25 +1,53 @@
 ---
 permalink: /404.html
-layout: page
+layout: default
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
+<div class="error-page">
+  <h1 class="error-code">404</h1>
+  <p class="error-message">Page not found</p>
+  <p class="error-hint">The requested page could not be found.</p>
+  <a href="{{ '/' | relative_url }}" class="error-link">← return home</a>
+</div>
+
+<style>
+  .error-page {
     text-align: center;
+    padding: 4rem 0;
   }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
+  .error-code {
+    font-size: 6rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f778a6 0%, #b39ddb 50%, #7ec8e3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     line-height: 1;
-    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    animation: gradient-shift 4s ease infinite;
+    background-size: 200% 200%;
+  }
+  .error-message {
+    font-size: 1.25rem;
+    color: #e4e4e7;
+    margin-bottom: 0.25rem;
+  }
+  .error-hint {
+    color: #6b6b80;
+    font-size: 0.9rem;
+  }
+  .error-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: #7ec8e3;
+    font-size: 0.9rem;
+  }
+  .error-link:hover {
+    color: #f778a6;
+  }
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 </style>
-
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>

@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<div class="hero">
+  <h1 class="hero-title">{{ site.title | escape }}</h1>
+  <p class="hero-subtitle">{{ site.description | escape }}</p>
+</div>
+
+<ul class="post-list">
+  {%- for post in site.posts limit:20 -%}
+  <li class="post-list-item">
+    <span class="post-list-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+    <h2 class="post-list-title">
+      <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+    </h2>
+    {%- if post.excerpt -%}
+    <p class="post-list-excerpt">{{ post.excerpt | strip_html | normalize_whitespace }}</p>
+    {%- endif -%}
+  </li>
+  {%- endfor -%}
+</ul>
