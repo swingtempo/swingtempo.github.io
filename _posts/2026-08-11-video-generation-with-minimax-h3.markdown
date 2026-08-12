@@ -20,3 +20,5 @@ I then tweaked the prompt and changed the urban post-futuristic action scene int
 <div style="padding-bottom: 56.25%; position: relative;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/ieVzUemfz28" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" title="Media Embed" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: 0px;"><small></small></iframe></div>
 
 Simply incredible what can be done. This is all with reasonably priced hardware - my GPU was released a year ago and my CPU is from 2020.
+
+Go to the YouTube pages to see the prompts.
