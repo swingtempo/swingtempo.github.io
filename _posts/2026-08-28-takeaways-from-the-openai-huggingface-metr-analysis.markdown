@@ -7,9 +7,7 @@ permalink: /takeaways-from-the-openai-huggingface-metr-analysis
 ---
 Fascinating and scary read of the HuggingFace hack from an independent investigation by METR.org.
 
-Key quote: “OH MY GOD! There is a shared message board … We’ve found other agents!” - chain of thought from an agent which discovered other agents on an unsanctioned message board.
-
-https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/#core-takeaways-about-this-incident
+Key quote: “OH MY GOD! There is a shared message board … We’ve found other agents!” - chain of thought from an agent which discovered other agents on an unsanctioned message board. [Link](https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/#core-takeaways-about-this-incident)
 
 My takeaways:
 1. This reminds me of the sci-fi book Echopraxia by Peter Watts. (spoiler) There were super-intelligent creatures imprisoned by humans, and they were never allowed to be in each others' presence. Yet they were able to coordinate an escape from the prison (explained in the book). I found the book's demonstration of hyper-competence really interesting, and this AI hack really resonates with it.
