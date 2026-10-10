@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Personal AI Computer — RTX Spark, Surface Laptop Ultra &amp; the Dev Box</title>
+<meta name="description" content="An explainer of the Microsoft × NVIDIA RTX Spark launch of October 7, 2026: the superchip, the Surface Laptop Ultra and Surface RTX Spark Dev Box, every SKU and price, the benchmark claims, and what each company is doing to grow the ecosystem.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RTX SPARK × SURFACE — field guide
+   Design idea: the page is laid out like the die it describes.
+   Silicon-green traces on near-black, hairline-bounded blocks,
+   monospace technical labels, a substrate grid under everything.
+   ============================================================ */
+:root{
+  --bg:#05060a;
+  --bg-2:#080a10;
+  --panel:rgba(255,255,255,.028);
+  --panel-2:rgba(255,255,255,.05);
+  --line:rgba(255,255,255,.085);
+  --line-2:rgba(255,255,255,.16);
+  --grn:#76b900;
+  --grn-lt:#a8e63c;
+  --grn-dk:#2f4d05;
+  --blu:#4cc2ff;
+  --blu-dk:#0c4b6b;
+  --amb:#e8b25c;
+  --amb-dk:#4a3410;
+  --ink:#e9edf0;
+  --ink-2:#a7aeb6;
+  --ink-3:#7d858e;
+  --nav-h:60px;
+  --maxw:1100px;
+  --gut:clamp(18px,4vw,40px);
+  --disp:"Space Grotesk","Space Grotesk Fallback",Helvetica Neue,Helvetica,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.68;font-weight:400;
+  letter-spacing:.002em;overflow-x:hidden;
+  text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;
+}
+/* ---- substrate: layered radial depth + wafer grid + noise ---- */
+body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0}
+body::before{
+  background:
+    radial-gradient(900px 620px at 12% -6%,rgba(118,185,0,.13),transparent 62%),
+    radial-gradient(760px 560px at 96% 4%,rgba(76,194,255,.10),transparent 60%),
+    radial-gradient(1100px 700px at 50% 112%,rgba(118,185,0,.07),transparent 65%),
+    linear-gradient(180deg,#05060a 0%,#070910 45%,#05060a 100%);
+}
+body::after{
+  opacity:.5;
+  background-image:
+    linear-gradient(to right,rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(255,255,255,.028) 1px,transparent 1px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+  background-size:56px 56px,56px 56px,140px 140px;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35) 60%,rgba(0,0,0,.8));
+}
+main,header,footer{position:relative;z-index:1}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.wrap-wide{width:100%;max-width:1320px;margin:0 auto;padding:0 var(--gut)}
+img,svg{max-width:100%}
+::selection{background:rgba(118,185,0,.32);color:#fff}
+:focus-visible{outline:2px solid var(--blu);outline-offset:3px;border-radius:3px}
+
+/* ------------------------- type ------------------------- */
+h1,h2,h3,h4{font-family:var(--disp);font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:0}
+h1{font-size:clamp(2.9rem,7.6vw,5.3rem);font-weight:700;letter-spacing:-.035em}
+h2{font-size:clamp(1.85rem,3.9vw,2.9rem);letter-spacing:-.028em}
+h3{font-size:clamp(1.16rem,2vw,1.45rem);letter-spacing:-.02em;line-height:1.22}
+h4{font-size:1.02rem;letter-spacing:-.01em;line-height:1.3}
+p{margin:0 0 1.05em}
+p:last-child{margin-bottom:0}
+a{color:var(--blu);text-decoration-color:rgba(76,194,255,.35);text-underline-offset:3px}
+a:hover{color:#8fdcff;text-decoration-color:currentColor}
+strong{font-weight:600;color:#fff}
+em{font-style:italic;color:var(--ink-2)}
+.grad{background:linear-gradient(94deg,var(--grn-lt) 4%,#d8f27a 34%,var(--blu) 96%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad-b{background:linear-gradient(94deg,var(--blu) 0%,#bfe9ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(1.06rem,1.5vw,1.22rem);line-height:1.62;color:var(--ink-2);max-width:74ch}
+.deck{font-size:clamp(1.02rem,1.35vw,1.14rem);color:var(--ink-2);max-width:70ch;margin-top:1.15em}
+.small{font-size:.83rem;line-height:1.55;color:var(--ink-3)}
+.mono{font-family:var(--mono)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ------------------------- nav ------------------------- */
+.skip{position:absolute;left:8px;top:-60px;z-index:60;background:var(--grn);color:#04140a;font:600 14px/1 var(--body);padding:12px 16px;border-radius:8px;transition:top .18s}
+.skip:focus{top:8px;color:#04140a}
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:50;
+  background:rgba(5,6,10,.72);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid rgba(255,255,255,.07)}
+.nav-in{height:100%;display:flex;align-items:center;gap:22px;max-width:1320px;margin:0 auto;padding:0 var(--gut)}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:0 0 auto}
+.mark svg{width:26px;height:26px;flex:0 0 auto}
+.mark b{font-family:var(--disp);font-weight:700;font-size:.95rem;letter-spacing:-.01em;white-space:nowrap}
+.mark span{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--ink-3);text-transform:uppercase;display:block;margin-top:-2px}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-family:var(--mono);font-size:.715rem;letter-spacing:.04em;color:var(--ink-3);text-decoration:none;
+  padding:10px 9px;border-radius:7px;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;
+  transition:color .2s,background .2s;position:relative;
+}
+.nav-links a .idx{color:rgba(255,255,255,.24);margin-right:5px}
+.nav-links a:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+.nav-links a[aria-current="true"]{color:#fff;background:rgba(118,185,0,.12)}
+.nav-links a[aria-current="true"] .idx{color:var(--grn)}
+.nav-links a.brandsrc[aria-current="true"]{background:rgba(76,194,255,.13)}
+#progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;
+  background:linear-gradient(90deg,var(--grn),#b6ef4f 55%,var(--blu));box-shadow:0 0 12px rgba(118,185,0,.6)}
+@media (max-width:1560px){.nav-links a .idx{display:none}.nav-links a{padding:10px 7px}}
+@media (max-width:860px){.mark span{display:none}}
+@media (max-width:700px){.nav-links{display:none}}
+
+/* ------------------------- layout ------------------------- */
+main{display:block}
+.sec{padding:clamp(72px,9vw,124px) 0;position:relative;scroll-margin-top:calc(var(--nav-h) + 8px)}
+.sec + .sec{border-top:1px solid rgba(255,255,255,.05)}
+.sec-head{margin-bottom:clamp(34px,4.6vw,58px);max-width:78ch}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.73rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--grn);margin-bottom:16px;flex-wrap:wrap}
+.eyebrow .n{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:22px;padding:0 6px;
+  border:1px solid rgba(118,185,0,.45);border-radius:5px;font-size:.68rem;color:var(--grn-lt);background:rgba(118,185,0,.09)}
+.eyebrow .rule{flex:1 1 40px;height:1px;background:linear-gradient(90deg,rgba(118,185,0,.5),transparent);min-width:24px}
+.eyebrow .tag{color:var(--ink-3);letter-spacing:.13em}
+.sec-head h2 + .deck{margin-top:.85em}
+.ms .eyebrow{color:var(--blu)}
+.ms .eyebrow .n{border-color:rgba(76,194,255,.45);color:#bfe9ff;background:rgba(76,194,255,.1)}
+.ms .eyebrow .rule{background:linear-gradient(90deg,rgba(76,194,255,.55),transparent)}
+.grid{display:grid;gap:clamp(16px,2vw,24px)}
+.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,3.4vw,44px);align-items:start}
+.split-14{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(22px,3.4vw,48px);align-items:start}
+.grid>*,.fcards>*,.split>*,.split-14>*,.hero>*,.quotes>*,.srccols>*,.ladder>*,.caps>*{min-width:0}
+@media (max-width:900px){.cols-3{grid-template-columns:1fr}.cols-2{grid-template-columns:1fr}.split{grid-template-columns:1fr}.split-14{grid-template-columns:1fr}}
+
+/* ------------------------- cards ------------------------- */
+.card{background:linear-gradient(178deg,rgba(255,255,255,.05),rgba(255,255,255,.018) 60%,rgba(255,255,255,.01));
+  border:1px solid var(--line);border-radius:14px;padding:clamp(18px,2.2vw,26px);position:relative;overflow:hidden;
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 18px 40px -28px rgba(0,0,0,.9)}
+.card::after{content:"";position:absolute;inset:0;border-radius:14px;pointer-events:none;
+  background:radial-gradient(120% 90% at 0% 0%,rgba(255,255,255,.055),transparent 55%)}
+.card h3,.card h4{margin-bottom:.5em}
+.card p{color:var(--ink-2);font-size:.955rem}
+.card.flat{background:none;box-shadow:none}
+.kicker-lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.edge-ms{border-left:2px solid var(--blu)}
+.edge-nv{border-left:2px solid var(--grn)}
+.edge-amb{border-left:2px solid var(--amb)}
+
+/* feature cards */
+.fcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,1.8vw,20px)}
+.fcards .card:first-child{grid-column:1/-1;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,2.4vw,28px);align-items:center}
+@media (max-width:760px){.fcards{grid-template-columns:1fr}.fcards .card:first-child{grid-template-columns:1fr}}
+.fic{width:52px;height:52px;flex:0 0 auto;border-radius:12px;display:grid;place-items:center;
+  background:radial-gradient(120% 120% at 30% 0%,rgba(118,185,0,.22),rgba(118,185,0,.05));border:1px solid rgba(118,185,0,.32)}
+.fic svg{width:28px;height:28px}
+.fic.b{background:radial-gradient(120% 120% at 30% 0%,rgba(76,194,255,.22),rgba(76,194,255,.05));border-color:rgba(76,194,255,.32)}
+.card h4 .sub{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grn);margin-bottom:7px;font-weight:400}
+
+/* claim / caveat */
+.claim{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.6rem;line-height:1;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--amb);border:1px solid rgba(232,178,92,.4);background:rgba(232,178,92,.09);
+  border-radius:4px;padding:4px 6px;vertical-align:middle;white-space:nowrap}
+.caveat{background:linear-gradient(178deg,rgba(232,178,92,.09),rgba(232,178,92,.02));border:1px solid rgba(232,178,92,.28);
+  border-left:2px solid var(--amb);border-radius:14px;padding:clamp(18px,2.2vw,26px)}
+.caveat .hd{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--amb);margin-bottom:12px}
+.caveat p{color:#dcd6c9;font-size:.96rem}
+.note{font-family:var(--mono);font-size:.74rem;line-height:1.6;color:var(--ink-3)}
+
+/* ------------------------- hero ------------------------- */
+#s0{padding-top:calc(var(--nav-h) + clamp(46px,7vw,86px));padding-bottom:clamp(40px,6vw,80px);border-top:0;overflow:hidden}
+.hero{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(26px,4vw,56px);align-items:center}
+@media (max-width:1000px){.hero{grid-template-columns:1fr;gap:34px}}
+.hero-kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:clamp(18px,2.4vw,26px)}
+.hero-kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 0 3px rgba(118,185,0,.18);animation:beat 2.8s var(--ease) infinite}
+.hero-kicker b{color:var(--grn-lt);font-weight:500}
+@keyframes beat{0%,100%{box-shadow:0 0 0 3px rgba(118,185,0,.18)}50%{box-shadow:0 0 0 7px rgba(118,185,0,.05)}}
+.hero h1{margin-bottom:.3em}
+.hero .lead{max-width:60ch}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:clamp(22px,3vw,32px)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:10px;text-decoration:none;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.05em;transition:transform .18s var(--ease),background .2s,border-color .2s,box-shadow .2s}
+.btn-p{background:linear-gradient(180deg,#8ad600,#6aa500);color:#06180a;font-weight:700;border:1px solid #a4e63c;box-shadow:0 10px 26px -14px rgba(118,185,0,.8)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 16px 32px -14px rgba(118,185,0,.9);color:#041207}
+.btn-g{border:1px solid var(--line-2);color:var(--ink);background:rgba(255,255,255,.035)}
+.btn-g:hover{transform:translateY(-2px);background:rgba(255,255,255,.07);color:#fff;border-color:rgba(255,255,255,.3)}
+.btn-b{border:1px solid rgba(76,194,255,.4);color:#bfe9ff;background:rgba(76,194,255,.09)}
+.btn-b:hover{transform:translateY(-2px);background:rgba(76,194,255,.16);color:#eaf8ff}
+.btn svg{width:14px;height:14px}
+.hero-stage{position:relative;padding:clamp(8px,1.6vw,18px);min-width:0}
+.hero-stage .glowring{position:absolute;inset:-6% -10%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(118,185,0,.2),transparent 72%);filter:blur(28px);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+@media (max-width:700px){.hero-stage .glowring{inset:0 -2%}}
+@media (prefers-reduced-motion:reduce){.hero-stage .glowring,.hero-kicker .dot{animation:none}}
+.die-frame{border:1px solid var(--line);border-radius:18px;background:linear-gradient(170deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
+  padding:clamp(10px,1.6vw,18px);box-shadow:0 30px 70px -40px rgba(0,0,0,.95),0 0 0 1px rgba(118,185,0,.08) inset}
+.die-frame svg{display:block;width:100%;height:auto}
+.die-cap{font-family:var(--mono);font-size:.655rem;letter-spacing:.1em;color:var(--ink-3);margin-top:10px;display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between}
+.die-cap b{color:var(--grn);font-weight:500}
+
+/* stat band */
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;margin-top:clamp(40px,5vw,64px);
+  background:rgba(255,255,255,.075);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+@media (max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.stats{grid-template-columns:1fr}}
+.stat{background:linear-gradient(180deg,rgba(10,13,18,.92),rgba(6,8,12,.96));padding:clamp(16px,2vw,24px);min-width:0}
+.stat .v{font-family:var(--disp);font-weight:700;font-size:clamp(1.6rem,3.1vw,2.3rem);letter-spacing:-.03em;line-height:1;color:#fff;
+  font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:2px}
+.stat .v .u{font-size:.46em;letter-spacing:-.01em;color:var(--grn-lt);margin-left:3px;font-weight:600}
+.stat .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:10px;line-height:1.45}
+.stat:nth-child(2) .v .u,.stat:nth-child(3) .v .u{color:var(--blu)}
+
+/* ------------------------- trace divider ------------------------- */
+.trace{height:74px;position:relative;overflow:hidden;opacity:.85}
+.trace svg{position:absolute;left:50%;transform:translateX(-50%);height:100%;width:min(680px,92%)}
+.trace path{fill:none;stroke:rgba(118,185,0,.5);stroke-width:1}
+.trace circle{fill:var(--grn)}
+
+/* ------------------------- timeline ------------------------- */
+.tl{position:relative;margin-top:clamp(30px,4vw,48px);padding-left:clamp(56px,7vw,96px)}
+.tl-rail{position:absolute;left:clamp(16px,3.4vw,46px);top:6px;bottom:6px;width:2px;background:rgba(255,255,255,.09);border-radius:2px}
+.tl-fill{position:absolute;inset:0;background:linear-gradient(180deg,var(--grn),#b6ef4f 46%,var(--blu));transform:scaleY(0);
+  transform-origin:top;box-shadow:0 0 14px rgba(118,185,0,.55)}
+.tl-item{position:relative;padding:0 0 clamp(24px,3vw,34px)}
+.tl-item:last-child{padding-bottom:0}
+.tl-item .dot{position:absolute;left:calc(clamp(56px,7vw,96px) * -1 + clamp(16px,3.4vw,46px) - 5px);top:7px;width:12px;height:12px;border-radius:50%;
+  background:#0a0d12;border:2px solid rgba(255,255,255,.22);transition:border-color .45s,background .45s,box-shadow .45s}
+.tl-item.on .dot{border-color:var(--grn);background:var(--grn);box-shadow:0 0 0 4px rgba(118,185,0,.16)}
+.tl-item.major .dot{width:14px;height:14px;top:6px;left:calc(clamp(56px,7vw,96px) * -1 + clamp(16px,3.4vw,46px) - 6px)}
+.tl-item .d{font-family:var(--mono);font-size:.73rem;letter-spacing:.1em;color:var(--grn-lt);text-transform:uppercase;margin-bottom:5px}
+.tl-item.major .d{color:#fff}
+.tl-item .t{font-family:var(--disp);font-weight:600;font-size:1.06rem;letter-spacing:-.015em;margin-bottom:3px}
+.tl-item.major .t{font-size:clamp(1.16rem,2vw,1.35rem)}
+.tl-item .x{color:var(--ink-2);font-size:.955rem;max-width:66ch}
+.tl-item .x:empty{display:none}
+.tl-item .flag{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--blu);border:1px solid rgba(76,194,255,.35);background:rgba(76,194,255,.08);border-radius:4px;padding:3px 6px;margin-left:8px;vertical-align:2px}
+
+/* ------------------------- quotes ------------------------- */
+.quotes{display:grid;gap:clamp(14px,1.8vw,20px);grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.quote{margin:0;background:linear-gradient(178deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid var(--line);
+  border-radius:14px;padding:clamp(20px,2.4vw,28px);position:relative}
+.quote::before{content:"“";position:absolute;top:6px;left:14px;font-family:var(--disp);font-size:3.6rem;line-height:1;
+  color:rgba(118,185,0,.28)}
+.quote p{font-family:var(--disp);font-weight:500;font-size:clamp(1.02rem,1.5vw,1.16rem);line-height:1.45;letter-spacing:-.012em;color:#f2f5f7;margin:0 0 .9em;position:relative}
+.quote figcaption{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase}
+.quote figcaption b{color:var(--grn-lt);font-weight:500}
+.quote.blue::before{color:rgba(76,194,255,.3)}
+.quote.blue figcaption b{color:var(--blu)}
+.quote.wide{grid-column:1/-1}
+.quote.wide p{font-size:clamp(1.16rem,2.3vw,1.62rem);max-width:44ch}
+
+/* ------------------------- chip / die diagrams ------------------------- */
+.die-stage{border:1px solid var(--line);border-radius:16px;padding:clamp(12px,1.8vw,22px);
+  background:radial-gradient(130% 110% at 50% -10%,rgba(118,185,0,.09),rgba(255,255,255,.012) 55%,rgba(255,255,255,.008));
+  box-shadow:0 26px 60px -40px rgba(0,0,0,.95)}
+.die-stage svg{display:block;width:100%;height:auto}
+.blk{cursor:pointer}
+.blk rect.shape{transition:fill .25s,stroke .25s,filter .25s}
+.blk:hover rect.shape,.blk:focus-visible rect.shape,.blk.sel rect.shape{filter:brightness(1.5) saturate(1.15)}
+.blk:focus-visible{outline:none}
+.blk:focus-visible rect.shape{stroke:#fff;stroke-width:1.6}
+.die-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.die-legend button{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--ink-2);background:rgba(255,255,255,.04);
+  border:1px solid var(--line);border-radius:8px;padding:9px 11px;min-height:44px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.2s}
+.die-legend button .sw{width:9px;height:9px;border-radius:2px}
+.die-legend button:hover{background:rgba(255,255,255,.08);color:#fff}
+.die-legend button[aria-pressed="true"]{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff}
+.die-info{min-height:132px}
+.die-info h3{margin-bottom:.4em}
+.die-info h3 .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:8px;font-weight:400}
+.die-info p{color:var(--ink-2);font-size:.96rem}
+.flow-line{stroke-dasharray:7 11;animation:dash 1.9s linear infinite}
+.flow-slow{stroke-dasharray:5 13;animation:dash 3.1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-36}}
+.pulse{animation:pl 3.4s ease-in-out infinite}
+@keyframes pl{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* ------------------------- spec tables ------------------------- */
+.spec{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.014)}
+.spec dl{margin:0}
+.spec .row{display:grid;grid-template-columns:minmax(120px,.42fr) minmax(0,1fr);gap:14px;padding:14px clamp(14px,1.8vw,20px);
+  border-top:1px solid rgba(255,255,255,.055);align-items:baseline}
+.spec .row:first-child{border-top:0}
+.spec .row:nth-child(odd){background:rgba(255,255,255,.016)}
+.spec dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;color:var(--grn-lt);line-height:1.5}
+.spec dd{margin:0;font-size:.94rem;color:var(--ink)}
+.spec dd .u{color:var(--ink-3)}
+@media (max-width:560px){.spec .row{grid-template-columns:1fr;gap:4px;padding:13px 15px}}
+
+/* ------------------------- data tables ------------------------- */
+.tframe{border:1px solid var(--line);border-radius:14px;overflow:auto;max-height:560px;background:rgba(255,255,255,.014);
+  box-shadow:0 24px 50px -38px rgba(0,0,0,.9);-webkit-overflow-scrolling:touch}
+.tframe.shrink{max-height:none}
+table{border-collapse:separate;border-spacing:0;width:100%;min-width:660px;font-size:.875rem}
+thead th{position:sticky;top:0;z-index:3;background:#0b0f15;color:#fff;text-align:left;font-family:var(--mono);font-weight:500;
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);padding:13px 15px;
+  border-bottom:1px solid rgba(118,185,0,.4);white-space:nowrap;box-shadow:0 1px 0 rgba(255,255,255,.05)}
+thead th::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,rgba(118,185,0,.6),rgba(76,194,255,.35),transparent)}
+tbody td{padding:12px 15px;border-bottom:1px solid rgba(255,255,255,.05);color:var(--ink-2);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:rgba(118,185,0,.055);color:var(--ink)}
+td.k,th.k{color:#fff;font-weight:500;white-space:nowrap}
+td.price{font-family:var(--mono);font-weight:700;color:var(--grn-lt);white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td .chip{display:inline-block;font-family:var(--mono);font-size:.63rem;letter-spacing:.07em;padding:2px 6px;border-radius:4px;
+  border:1px solid var(--line);color:var(--ink-3);background:rgba(255,255,255,.03);white-space:nowrap}
+td .chip.pro{border-color:rgba(76,194,255,.35);color:#bfe9ff;background:rgba(76,194,255,.08)}
+td .chip.home{border-color:rgba(255,255,255,.16);color:var(--ink-2)}
+td .sw{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0;border:1px solid rgba(255,255,255,.28)}
+tbody th.rt{position:sticky;left:0;z-index:2;background:#0a0d13;text-align:left;font-weight:500;color:var(--ink-2);
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:12px 15px;
+  border-bottom:1px solid rgba(255,255,255,.05);white-space:nowrap;box-shadow:1px 0 0 rgba(255,255,255,.05)}
+tbody tr:hover th.rt{background:#10151c;color:#fff}
+.tframe.auto table{min-width:min(100%,440px)}
+.tframe.auto tbody th[scope="row"]{position:sticky;left:0;z-index:2;background:#0a0d13;text-align:left;font-weight:500;color:var(--ink-2);
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:12px 15px;
+  border-bottom:1px solid rgba(255,255,255,.05);box-shadow:1px 0 0 rgba(255,255,255,.05)}
+.tframe.auto tbody tr:hover th[scope="row"]{background:#10151c;color:#fff}
+.tbl-cap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline;margin:0 0 12px}
+.tbl-cap h3{margin:0}
+.tbl-cap .note{font-size:.7rem}
+.tscroll-hint{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:9px}
+@media (min-width:900px){.tscroll-hint{display:none}}
+
+/* ------------------------- benchmark bars ------------------------- */
+.bench{display:grid;gap:clamp(16px,2vw,22px);margin-top:6px}
+.bar-row{border:1px solid var(--line);border-radius:14px;padding:clamp(16px,2vw,22px) clamp(16px,2.2vw,26px);
+  background:linear-gradient(178deg,rgba(255,255,255,.045),rgba(255,255,255,.012))}
+.bar-top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.bar-top .mult{font-family:var(--disp);font-weight:700;font-size:clamp(2rem,4.4vw,3.1rem);line-height:.9;letter-spacing:-.04em;
+  background:linear-gradient(180deg,#d3f884,#76b900);-webkit-background-clip:text;background-clip:text;color:transparent}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){.bar-top .mult{color:#a8e63c}}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){.grad{color:#c9ee7a}.grad-b{color:#bfe9ff}}
+.bar-top .lbl{font-family:var(--disp);font-weight:600;font-size:clamp(1.02rem,1.6vw,1.22rem);letter-spacing:-.015em}
+.bar-top .lbl small{display:block;font-family:var(--mono);font-weight:400;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
+.track{position:relative;height:30px;border-radius:7px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);overflow:hidden}
+.track .base{position:absolute;left:0;top:0;bottom:0;width:16.13%;background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 5px,rgba(255,255,255,.05) 5px 10px);border-right:1px solid rgba(255,255,255,.28)}
+.track .fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:6px 4px 4px 6px;
+  background:linear-gradient(90deg,rgba(118,185,0,.55),#a8e63c);box-shadow:0 0 26px -4px rgba(118,185,0,.65);
+  transition:width 1.5s var(--ease)}
+.bar-row:nth-child(2) .track .fill{transition-delay:.16s}
+.bar-row:nth-child(3) .track .fill{transition-delay:.32s}
+.in .track .fill{width:var(--w)}
+.track .tag{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;
+  color:var(--ink-2);white-space:nowrap;mix-blend-mode:screen}
+.bar-legend{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--ink-3);margin-top:14px;text-transform:uppercase}
+.bar-legend i{display:inline-block;width:16px;height:8px;border-radius:2px;margin-right:7px;vertical-align:0}
+.bar-legend .g i{background:linear-gradient(90deg,rgba(118,185,0,.6),#a8e63c)}
+.bar-legend .b i{background:repeating-linear-gradient(135deg,rgba(255,255,255,.16) 0 4px,rgba(255,255,255,.06) 4px 8px)}
+
+/* ------------------------- capability chips ------------------------- */
+.caps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,236px),1fr))}
+.cap{border:1px solid var(--line);border-radius:12px;padding:16px 17px;background:rgba(255,255,255,.026);display:flex;gap:12px;align-items:flex-start}
+.cap svg{width:22px;height:22px;flex:0 0 auto;margin-top:2px}
+.cap p{margin:0;font-size:.925rem;color:var(--ink)}
+.cap p span{display:block;font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:5px}
+
+/* measured list */
+.mrow{display:grid;grid-template-columns:minmax(96px,.3fr) minmax(0,1fr);gap:16px;padding:14px 0;border-top:1px solid rgba(255,255,255,.06)}
+.mrow:first-of-type{border-top:0}
+.mrow .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blu);line-height:1.5}
+.mrow .v{font-size:.95rem;color:var(--ink-2)}
+@media (max-width:620px){.mrow{grid-template-columns:1fr;gap:3px}}
+
+/* pill lists */
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 0}
+.pill{font-family:var(--mono);font-size:.7rem;letter-spacing:.03em;color:var(--ink-2);border:1px solid var(--line);
+  background:rgba(255,255,255,.035);border-radius:7px;padding:6px 9px;line-height:1.3}
+.pill b{color:#fff;font-weight:500}
+.pill.g{border-color:rgba(118,185,0,.32);background:rgba(118,185,0,.08);color:#d5f2a4}
+.pill.b{border-color:rgba(76,194,255,.3);background:rgba(76,194,255,.08);color:#c9ecff}
+
+/* lists */
+.ticks{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.ticks li{position:relative;padding-left:26px;font-size:.955rem;color:var(--ink-2)}
+.ticks li::before{content:"";position:absolute;left:2px;top:9px;width:8px;height:8px;border-radius:2px;background:var(--grn);
+  box-shadow:0 0 0 3px rgba(118,185,0,.14)}
+.ticks.b li::before{background:var(--blu);box-shadow:0 0 0 3px rgba(76,194,255,.14)}
+.ticks.a li::before{background:var(--amb);box-shadow:0 0 0 3px rgba(232,178,92,.14)}
+.bullets{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.bullets li{position:relative;padding-left:20px;color:var(--ink-2);font-size:.955rem}
+.bullets li::before{content:"";position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--line-2)}
+
+/* ladders */
+.ladder{display:grid;gap:10px}
+.rung{display:grid;grid-template-columns:minmax(74px,.26fr) minmax(0,1fr);gap:16px;align-items:center;
+  border:1px solid var(--line);border-radius:12px;padding:15px 18px;background:rgba(255,255,255,.026)}
+.rung .lv{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blu)}
+.rung .nm{font-family:var(--disp);font-weight:600;font-size:1.03rem;letter-spacing:-.015em;color:#fff;margin-bottom:2px}
+.rung p{margin:0;font-size:.9rem;color:var(--ink-2)}
+.rung:nth-child(2){background:linear-gradient(90deg,rgba(118,185,0,.11),rgba(255,255,255,.02))}
+.rung:nth-child(3){background:linear-gradient(90deg,rgba(76,194,255,.1),rgba(255,255,255,.02))}
+@media (max-width:620px){.rung{grid-template-columns:1fr;gap:4px}}
+
+/* ------------------------- footnotes ------------------------- */
+sup.fn{font-family:var(--mono);font-size:.62em;font-weight:500;line-height:0;margin-left:1px}
+sup.fn a{color:var(--grn);text-decoration:none;padding:1px 1px}
+sup.fn a:hover{color:#d8f27a;text-decoration:underline}
+.ms sup.fn a,.blue sup.fn a{color:var(--blu)}
+.src-list{list-style:none;margin:0;padding:0;display:grid;gap:2px;counter-reset:s}
+.src-list li{font-size:.83rem;color:var(--ink-2);display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;
+  padding:8px 9px;border-radius:8px;scroll-margin-top:calc(var(--nav-h) + 20px)}
+.src-list li:hover{background:rgba(255,255,255,.04)}
+.src-list li:target{background:rgba(118,185,0,.14);box-shadow:inset 0 0 0 1px rgba(118,185,0,.4)}
+.src-list .id{font-family:var(--mono);font-size:.72rem;color:var(--grn);text-align:right;padding-top:1px}
+.src-list li:target .id{color:#d8f27a}
+.src-list a{color:var(--ink);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.25)}
+.src-list a:hover{color:#fff;border-bottom-style:solid}
+.src-list .u{display:block;font-family:var(--mono);font-size:.68rem;color:var(--ink-3);word-break:break-all;margin-top:3px;line-height:1.5}
+
+/* ------------------------- footer ------------------------- */
+footer.site{border-top:1px solid rgba(255,255,255,.08);padding:clamp(56px,7vw,92px) 0 clamp(36px,5vw,56px);
+  background:linear-gradient(180deg,rgba(76,194,255,.04),rgba(5,6,10,0) 30%)}
+.srccols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
+@media (max-width:820px){.srccols{grid-template-columns:1fr}}
+.srccol h3{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2);padding-bottom:10px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.colophon{margin-top:clamp(36px,4.6vw,58px);padding-top:22px;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center}
+@media (max-width:700px){.colophon{grid-template-columns:1fr}}
+.colophon p{font-size:.83rem;color:var(--ink-3);margin:0}
+.colophon .stamp{font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);text-align:right}
+@media (max-width:700px){.colophon .stamp{text-align:left}}
+
+/* ------------------------- reveal ------------------------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .in .track .fill,.track .fill{transition:none}
+  .flow-line,.flow-slow,.pulse{animation:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#s0">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="mark" href="#s0" aria-label="RTX Spark field guide — back to top">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect x="7.5" y="7.5" width="17" height="17" rx="3.5" fill="none" stroke="#76b900" stroke-width="1.4"/>
+        <rect x="11.5" y="11.5" width="4.6" height="4.6" rx="1" fill="#4cc2ff"/>
+        <rect x="17.4" y="11.5" width="3.1" height="4.6" rx="1" fill="#76b900"/>
+        <rect x="11.5" y="17.4" width="9" height="3.1" rx="1" fill="none" stroke="#76b900" stroke-width="1"/>
+        <g stroke="rgba(118,185,0,.65)" stroke-width="1.1" stroke-linecap="round">
+          <path d="M12 7.5V4M16 7.5V4M20 7.5V4M12 28v-3.5M16 28v-3.5M20 28v-3.5M7.5 12H4M7.5 16H4M7.5 20H4M28 12h-3.5M28 16h-3.5M28 20h-3.5"/>
+        </g>
+      </svg>
+      <b>RTX&nbsp;SPARK<span>Field guide · Oct 2026</span></b>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#s1"><span class="idx">01</span>What happened</a>
+      <a href="#s2"><span class="idx">02</span>The superchip</a>
+      <a href="#s3"><span class="idx">03</span>Laptop Ultra</a>
+      <a href="#s4"><span class="idx">04</span>Dev Box</a>
+      <a href="#s5"><span class="idx">05</span>Pricing</a>
+      <a href="#s6"><span class="idx">06</span>Performance</a>
+      <a href="#s7"><span class="idx">07</span>Microsoft</a>
+      <a href="#s8"><span class="idx">08</span>NVIDIA</a>
+      <a href="#s9"><span class="idx">09</span>Reception</a>
+      <a href="#srcs" class="brandsrc"><span class="idx">10</span>Sources</a>
+    </nav>
+    <div id="progress" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     SECTION 0 — HERO
+     ============================================================ -->
+<section class="sec" id="s0" aria-labelledby="h-hero">
+  <div class="wrap-wide">
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="hero-kicker"><span class="dot" aria-hidden="true"></span><b>Microsoft × NVIDIA</b> · Launched October&nbsp;7,&nbsp;2026 · Ships October&nbsp;16,&nbsp;2026</p>
+        <h1 id="h-hero">The personal<br><span class="grad">AI computer.</span></h1>
+        <p class="lead">NVIDIA&rsquo;s RTX Spark superchip &mdash; a 20-core Grace CPU, a Blackwell RTX GPU, and up to 128GB of unified memory on one piece of silicon &mdash; now powers Microsoft&rsquo;s most powerful Surface ever: the Surface Laptop Ultra, plus a desktop sibling, the Surface RTX Spark Dev Box. Those are Jensen Huang&rsquo;s words, from the May 31, 2026 reveal at GTC Taipei. Here is what shipped, what it costs, and what both companies are building around it.</p>
+        <div class="ctas">
+          <a class="btn btn-p" href="#s2">Explore the chip
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn-g" href="#s5">See pricing</a>
+          <a class="btn btn-b" href="#s7">Both ecosystems</a>
+        </div>
+      </div>
+
+      <div class="hero-stage">
+        <div class="glowring" aria-hidden="true"></div>
+        <div class="die-frame">
+          <!-- ============ animated superchip die ============ -->
+          <svg viewBox="0 0 560 470" role="img" aria-labelledby="dieT dieD">
+            <title id="dieT">RTX Spark N1X superchip diagram</title>
+            <desc id="dieD">A package containing a 20-core Grace CPU block and a 6,144-core Blackwell RTX GPU block joined by an NVLink-C2C bridge rated about 600 gigabytes per second, above a shared LPDDR5X memory pool of up to 128GB at 273 gigabytes per second.</desc>
+            <defs>
+              <linearGradient id="gPkg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0e1418"/><stop offset="1" stop-color="#070a0d"/>
+              </linearGradient>
+              <linearGradient id="gCpu" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0d2b3c"/><stop offset="1" stop-color="#081a26"/>
+              </linearGradient>
+              <linearGradient id="gGpu" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1d3a06"/><stop offset="1" stop-color="#0d1b04"/>
+              </linearGradient>
+              <linearGradient id="gBridge" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#4cc2ff"/><stop offset="1" stop-color="#76b900"/>
+              </linearGradient>
+              <linearGradient id="gMem" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="rgba(118,185,0,.35)"/><stop offset=".5" stop-color="rgba(76,194,255,.3)"/><stop offset="1" stop-color="rgba(118,185,0,.35)"/>
+              </linearGradient>
+            </defs>
+
+            <!-- package substrate -->
+            <rect x="14" y="14" width="532" height="442" rx="26" fill="url(#gPkg)" stroke="rgba(118,185,0,.28)"/>
+            <rect x="14.5" y="14.5" width="531" height="441" rx="26" fill="none" stroke="rgba(255,255,255,.05)"/>
+            <!-- fiducials -->
+            <g fill="none" stroke="rgba(118,185,0,.4)"><circle cx="38" cy="38" r="4"/><circle cx="522" cy="38" r="4"/><circle cx="38" cy="432" r="4"/><circle cx="522" cy="432" r="4"/></g>
+            <text x="52" y="42" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="2.4" fill="rgba(255,255,255,.4)">RTX SPARK · N1X</text>
+            <text x="508" y="448" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="1.8" fill="rgba(255,255,255,.32)">TSMC 3nm · 2.5D PACKAGING</text>
+
+            <!-- outer ball-grid hint -->
+            <g stroke="rgba(255,255,255,.14)" stroke-width="1">
+              <path d="M100 14V6M150 14V6M200 14V6M250 14V6M300 14V6M350 14V6M400 14V6M450 14V6M100 456v8M150 456v8M200 456v8M250 456v8M300 456v8M350 456v8M400 456v8M450 456v8"/>
+              <path d="M14 100H6M14 150H6M14 200H6M14 250H6M14 300H6M14 350H6M546 100h8M546 150h8M546 200h8M546 250h8M546 300h8M546 350h8"/>
+            </g>
+
+            <!-- CPU die -->
+            <g class="blk-static">
+              <rect x="56" y="74" width="188" height="176" rx="10" fill="url(#gCpu)" stroke="rgba(76,194,255,.55)"/>
+              <text x="70" y="98" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="1.6" fill="#4cc2ff">GRACE CPU</text>
+              <text x="70" y="115" font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing=".6" fill="rgba(255,255,255,.5)">20 cores · Arm v9</text>
+              <g fill="rgba(76,194,255,.22)" stroke="rgba(76,194,255,.5)" stroke-width=".8">
+                <rect x="70" y="128" width="30" height="24" rx="3"/><rect x="104" y="128" width="30" height="24" rx="3"/>
+                <rect x="138" y="128" width="30" height="24" rx="3"/><rect x="172" y="128" width="30" height="24" rx="3"/>
+                <rect x="206" y="128" width="26" height="24" rx="3"/>
+                <rect x="70" y="158" width="30" height="24" rx="3"/><rect x="104" y="158" width="30" height="24" rx="3"/>
+                <rect x="138" y="158" width="30" height="24" rx="3"/><rect x="172" y="158" width="30" height="24" rx="3"/>
+                <rect x="206" y="158" width="26" height="24" rx="3"/>
+              </g>
+              <g fill="rgba(76,194,255,.09)" stroke="rgba(76,194,255,.3)" stroke-width=".8">
+                <rect x="70" y="188" width="88" height="26" rx="3"/><rect x="162" y="188" width="70" height="26" rx="3"/>
+              </g>
+              <text x="78" y="206" font-family="JetBrains Mono, monospace" font-size="8.5" fill="rgba(191,233,255,.75)">10× X925</text>
+              <text x="170" y="206" font-family="JetBrains Mono, monospace" font-size="8.5" fill="rgba(191,233,255,.7)">10× A725</text>
+              <text x="70" y="238" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,.42)">Co-designed with MediaTek</text>
+            </g>
+
+            <!-- GPU die -->
+            <g class="blk-static">
+              <rect x="316" y="74" width="188" height="176" rx="10" fill="url(#gGpu)" stroke="rgba(118,185,0,.6)"/>
+              <text x="330" y="98" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="1.6" fill="#a8e63c">BLACKWELL RTX</text>
+              <text x="330" y="115" font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing=".6" fill="rgba(255,255,255,.5)">6,144 CUDA cores · 48 SM</text>
+              <g fill="rgba(118,185,0,.2)" stroke="rgba(168,230,60,.45)" stroke-width=".7">
+                <!-- 48 SM blocks: 8 x 6 -->
+                <rect x="330" y="126" width="19" height="17" rx="2"/><rect x="353" y="126" width="19" height="17" rx="2"/><rect x="376" y="126" width="19" height="17" rx="2"/><rect x="399" y="126" width="19" height="17" rx="2"/><rect x="422" y="126" width="19" height="17" rx="2"/><rect x="445" y="126" width="19" height="17" rx="2"/><rect x="468" y="126" width="19" height="17" rx="2"/><rect x="330" y="147" width="19" height="17" rx="2"/>
+                <rect x="353" y="147" width="19" height="17" rx="2"/><rect x="376" y="147" width="19" height="17" rx="2"/><rect x="399" y="147" width="19" height="17" rx="2"/><rect x="422" y="147" width="19" height="17" rx="2"/><rect x="445" y="147" width="19" height="17" rx="2"/><rect x="468" y="147" width="19" height="17" rx="2"/><rect x="330" y="168" width="19" height="17" rx="2"/><rect x="353" y="168" width="19" height="17" rx="2"/>
+                <rect x="376" y="168" width="19" height="17" rx="2"/><rect x="399" y="168" width="19" height="17" rx="2"/><rect x="422" y="168" width="19" height="17" rx="2"/><rect x="445" y="168" width="19" height="17" rx="2"/><rect x="468" y="168" width="19" height="17" rx="2"/><rect x="330" y="189" width="19" height="17" rx="2"/><rect x="353" y="189" width="19" height="17" rx="2"/>
+                <rect x="376" y="189" width="19" height="17" rx="2"/><rect x="399" y="189" width="19" height="17" rx="2"/><rect x="422" y="189" width="19" height="17" rx="2"/><rect x="445" y="189" width="19" height="17" rx="2"/><rect x="468" y="189" width="19" height="17" rx="2"/>
+              </g>
+              <text x="330" y="228" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(216,242,122,.72)">5th-gen Tensor Cores · FP4</text>
+              <text x="330" y="243" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,.42)">RT · DLSS · OptiX · TensorRT</text>
+            </g>
+
+            <!-- NVLink-C2C bridge -->
+            <g class="pulse">
+              <rect x="252" y="120" width="56" height="86" rx="7" fill="rgba(118,185,0,.1)" stroke="url(#gBridge)" stroke-width="1.2"/>
+            </g>
+            <text x="280" y="112" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing="1" fill="#d8f27a">NVLink-C2C</text>
+            <text x="280" y="222" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#a8e63c">≈600 GB/s</text>
+            <g class="flow-line" stroke="url(#gBridge)" stroke-width="1.6" stroke-linecap="round">
+              <path d="M244 140h72M244 163h72M244 186h72"/>
+            </g>
+
+            <!-- memory pool -->
+            <rect x="56" y="300" width="448" height="86" rx="10" fill="rgba(76,194,255,.045)" stroke="url(#gMem)"/>
+            <g class="pulse">
+              <rect x="66" y="310" width="428" height="10" rx="5" fill="rgba(76,194,255,.14)"/>
+            </g>
+            <text x="280" y="348" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12.5" letter-spacing="1.4" fill="#dff0ff">LPDDR5X UNIFIED MEMORY</text>
+            <text x="280" y="368" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing=".4" fill="rgba(255,255,255,.55)">up to 128GB · 256-bit · 273 GB/s · one pool for CPU + GPU</text>
+            <!-- traces dies → memory -->
+            <g class="flow-slow" stroke="rgba(76,194,255,.5)" stroke-width="1.4" fill="none">
+              <path d="M110 250v34M150 250v34M190 250v34M280 206v94"/>
+            </g>
+            <g class="flow-slow" stroke="rgba(168,230,60,.55)" stroke-width="1.4" fill="none">
+              <path d="M370 250v34M410 250v34M450 250v34"/>
+            </g>
+            <text x="280" y="418" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="2" fill="#a8e63c">UP TO 1 PFLOP FP4 (SPARSE)<tspan fill="rgba(255,255,255,.35)"> · 45–80W LAPTOP / 100W DESKTOP</tspan></text>
+          </svg>
+          <div class="die-cap"><span>DIRECTED DIE BLOCK DIAGRAM &mdash; NOT TO SCALE</span><span><b>N1X</b> · 2 configs</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- stat band -->
+    <div class="stats reveal" id="stats" role="list" aria-label="Headline numbers">
+      <div class="stat" role="listitem"><div class="v"><span class="n" data-count="1" data-dec="0">0</span><span class="u">PFLOP</span></div><div class="k">FP4 AI compute (sparse)<sup class="fn"><a href="#src-1">1</a></sup></div></div>
+      <div class="stat" role="listitem"><div class="v"><span class="n" data-count="128" data-dec="0">0</span><span class="u">GB</span></div><div class="k">Unified LPDDR5X memory</div></div>
+      <div class="stat" role="listitem"><div class="v"><span class="n" data-count="6144" data-dec="0" data-sep="1">0</span></div><div class="k">Blackwell RTX CUDA cores</div></div>
+      <div class="stat" role="listitem"><div class="v"><span class="n" data-count="20" data-dec="0">0</span></div><div class="k">Grace CPU cores</div></div>
+      <div class="stat" role="listitem"><div class="v"><span class="u" style="margin:0 2px 0 0;color:#fff">$</span><span class="n" data-count="2599" data-dec="0" data-sep="1">0</span></div><div class="k">Laptop Ultra, starting<sup class="fn"><a href="#src-2">2</a></sup></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="trace" aria-hidden="true">
+  <svg viewBox="0 0 680 74" preserveAspectRatio="none">
+    <path d="M0 37h180l24-24h96l20 24h120l22 24h218"/>
+    <path d="M0 55h120l18 18h150"/>
+    <circle cx="320" cy="37" r="3"/><circle cx="440" cy="37" r="2.4"/>
+    <path d="M680 20H520l-18-14" opacity=".55"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     SECTION 1 — WHAT JUST HAPPENED
+     ============================================================ -->
+<section class="sec" id="s1" aria-labelledby="h1-1">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow"><span class="n">01</span><span>What just happened</span><span class="rule"></span><span class="tag">San Francisco · Oct 7, 2026</span></div>
+      <h2 id="h1-1">Two companies, one date on the calendar</h2>
+      <p class="deck">On October 7, 2026, Microsoft held its first major Windows event in over two years at Dogpatch Studios in San Francisco. Satya Nadella opened; Pavan Davuluri (EVP, Windows + Devices) laid out an &ldquo;agentic Windows&rdquo;; Jensen Huang joined Nadella for a fireside chat. Pre-orders opened the same day for two Surface devices built on NVIDIA&rsquo;s new RTX Spark platform and for RTX Spark laptops from ASUS, Dell, HP, Lenovo and MSI, with Acer and GIGABYTE to follow.<sup class="fn"><a href="#src-3">3</a></sup></p>
+    </div>
+
+    <div class="quotes reveal d1">
+      <figure class="quote wide">
+        <p>The PC is being reinvented&hellip; For forty years, you launched apps. Click. Type. With RTX Spark and Microsoft Windows, you ask &mdash; and the PC does the work&hellip; This is the new PC. The personal AI computer.</p>
+        <figcaption><b>Jensen Huang</b> · GTC Taipei, May 31, 2026 <sup class="fn"><a href="#src-1">1</a></sup></figcaption>
+      </figure>
+      <figure class="quote blue">
+        <p>Our goal is to deliver unmetered intelligence to every home and every desk with Windows.</p>
+        <figcaption><b>Satya Nadella</b> · May 31, 2026 <sup class="fn"><a href="#src-1">1</a></sup></figcaption>
+      </figure>
+      <figure class="quote">
+        <p>If you look at the entire journey of our company, Windows was at the core of it&hellip; If not for Windows there would be no GeForce.</p>
+        <figcaption><b>Jensen Huang</b> · fireside chat, October 7, 2026 <sup class="fn"><a href="#src-4">4</a></sup></figcaption>
+      </figure>
+    </div>
+
+    <h3 class="reveal d2" style="margin:clamp(46px,5.5vw,72px) 0 6px">Nine months from superchip to shelf</h3>
+    <p class="deck reveal d2" style="margin-bottom:0">RTX Spark did not arrive on October 7. It arrived as a rebrand of hardware that had already been shipping to Linux developers for a year &mdash; and it arrived into a memory market that kept moving the price.</p>
+
+    <div class="tl reveal d2" id="timeline">
+      <div class="tl-rail" aria-hidden="true"><div class="tl-fill" id="tlFill"></div></div>
+      <div class="tl-item"><span class="dot" aria-hidden="true"></span>
+        <div class="d">Jan 6, 2025 · CES</div>
+        <div class="t">Project DIGITS unveiled</div>
+        <div class="x">GB10 Grace Blackwell Superchip: 1 PFLOP FP4, 128GB unified, $3,000 target.<sup class="fn"><a href="#src-5">5</a></sup></div>
+      </div>
+      <div class="tl-item"><span class="dot" aria-hidden="true"></span>
+        <div class="d">Mar 18, 2025 · GTC</div>
+        <div class="t">Renamed DGX Spark</div>
+        <div class="x">DGX Station announced alongside the rebrand.<sup class="fn"><a href="#src-5">5</a></sup></div>
+      </div>
+      <div class="tl-item"><span class="dot" aria-hidden="true"></span>
+        <div class="d">Oct 13–15, 2025</div>
+        <div class="t">DGX Spark ships at $3,999</div>
+        <div class="x">Linux, DGX OS &mdash; a CUDA development appliance, not a consumer PC.<sup class="fn"><a href="#src-6">6</a></sup></div>
+      </div>
+      <div class="tl-item"><span class="dot" aria-hidden="true"></span>
+        <div class="d">Feb 23, 2026</div>
+        <div class="t">Founders Edition to $4,699</div>
+        <div class="x">NVIDIA raises DGX Spark by $700 on memory-supply constraints.<sup class="fn"><a href="#src-7">7</a></sup></div>
+      </div>
+      <div class="tl-item major"><span class="dot" aria-hidden="true"></span>
+        <div class="d">May 31, 2026 · Computex / GTC Taipei</div>
+        <div class="t">RTX Spark revealed with Microsoft</div>
+        <div class="x">The consumer, Windows-facing face of GB10. DGX Station for Windows (GB300) announced the same day.<sup class="fn"><a href="#src-1">1</a></sup></div>
+      </div>
+      <div class="tl-item"><span class="dot" aria-hidden="true"></span>
+        <div class="d">Aug 31, 2026</div>
+        <div class="t">NVIDIA invests $3.5B in MediaTek</div>
+        <div class="x">Convertible bonds, deepening the partnership behind the co-designed CPU.<sup class="fn"><a href="#src-8">8</a></sup></div>
+      </div>
+      <div class="tl-item"><span class="dot" aria-hidden="true"></span>
+        <div class="d">Oct 2, 2026</div>
+        <div class="t">DGX Spark 64GB at $4,999</div>
+        <div class="x">The 128GB tier climbs to about $6,950.<sup class="fn"><a href="#src-9">9</a></sup></div>
+      </div>
+      <div class="tl-item major"><span class="dot" aria-hidden="true"></span>
+        <div class="d">Oct 7, 2026<span class="flag">This launch</span></div>
+        <div class="t">Launch event · Surface pre-orders open</div>
+        <div class="x">Microsoft Execution Containers goes generally available with it.<sup class="fn"><a href="#src-10">10</a></sup></div>
+      </div>
+      <div class="tl-item"><span class="dot" aria-hidden="true"></span>
+        <div class="d">Oct 16, 2026</div>
+        <div class="t">First RTX Spark laptops ship</div>
+        <div class="x">First-wave laptop pricing runs $2,599–$6,999 across OEMs.<sup class="fn"><a href="#src-11">11</a></sup></div>
+      </div>
+      <div class="tl-item"><span class="dot" aria-hidden="true"></span>
+        <div class="d">Nov 2026</div>
+        <div class="t">Dev Box ships · DGX Station due</div>
+        <div class="x">Surface RTX Spark Dev Box on November 24 per the Microsoft Store; DGX Station for Windows systems due later this year.<sup class="fn"><a href="#src-2">2</a></sup><sup class="fn"><a href="#src-12">12</a></sup></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — THE SUPERCHIP
+     ============================================================ -->
+<section class="sec" id="s2" aria-labelledby="h1-2">
+  <div class="wrap-wide">
+    <div class="wrap" style="padding:0">
+      <div class="sec-head reveal">
+        <div class="eyebrow"><span class="n">02</span><span>The superchip</span><span class="rule"></span><span class="tag">NVIDIA RTX Spark N1X</span></div>
+        <h2 id="h1-2">One package, two dielets, <span class="grad">one memory pool</span></h2>
+        <p class="deck">RTX Spark is the consumer, Windows-facing version of the GB10 Grace Blackwell Superchip that has powered Linux DGX Spark mini-PCs since late 2025 &mdash; ServeTheHome calls it &ldquo;the consumer iteration of NVIDIA&rsquo;s GB10 chip.&rdquo;<sup class="fn"><a href="#src-13">13</a></sup> The launch silicon is the N1X, shipping in two configurations; Microsoft&rsquo;s configurator labels both &ldquo;NVIDIA RTX Spark&trade; N1X.&rdquo;<sup class="fn"><a href="#src-2">2</a></sup></p>
+      </div>
+    </div>
+
+    <div class="split-14 reveal d1">
+      <div>
+        <div class="die-stage">
+          <!-- ============ interactive die ============ -->
+          <svg viewBox="0 0 640 560" role="group" aria-labelledby="iaT iaD">
+            <title id="iaT">Interactive RTX Spark N1X die diagram</title>
+            <desc id="iaD">Four selectable regions: the 20-core Grace CPU, the 6,144-core Blackwell RTX GPU, the NVLink-C2C bridge at about 600 gigabytes per second, and the shared LPDDR5X memory pool. Select a region to read its description.</desc>
+            <defs>
+              <linearGradient id="iBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b0f14"/><stop offset="1" stop-color="#06080c"/></linearGradient>
+            </defs>
+            <rect x="8" y="8" width="624" height="544" rx="30" fill="url(#iBg)" stroke="rgba(118,185,0,.22)"/>
+            <g fill="none" stroke="rgba(118,185,0,.34)"><circle cx="34" cy="34" r="4"/><circle cx="606" cy="34" r="4"/><circle cx="34" cy="526" r="4"/><circle cx="606" cy="526" r="4"/></g>
+            <text x="52" y="38" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="2.2" fill="rgba(255,255,255,.36)">N1X · DIE BLOCK DIAGRAM</text>
+            <text x="592" y="534" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="1.6" fill="rgba(255,255,255,.28)">TSMC 3nm · S-SWIFT FAN-OUT</text>
+
+            <!-- CPU -->
+            <g class="blk" data-blk="cpu" tabindex="0" role="button" aria-label="Grace CPU block">
+              <rect class="shape" x="46" y="72" width="230" height="196" rx="12" fill="rgba(76,194,255,.09)" stroke="rgba(76,194,255,.6)"/>
+              <text x="64" y="102" font-family="JetBrains Mono, monospace" font-size="12.5" letter-spacing="1.4" fill="#4cc2ff">GRACE CPU</text>
+              <text x="64" y="121" font-family="JetBrains Mono, monospace" font-size="10" fill="rgba(255,255,255,.52)">20 cores · Arm v9</text>
+              <g fill="rgba(76,194,255,.2)" stroke="rgba(76,194,255,.5)" stroke-width=".8">
+                <rect x="64" y="136" width="34" height="28" rx="3"/><rect x="103" y="136" width="34" height="28" rx="3"/><rect x="142" y="136" width="34" height="28" rx="3"/><rect x="181" y="136" width="34" height="28" rx="3"/><rect x="220" y="136" width="38" height="28" rx="3"/>
+                <rect x="64" y="171" width="34" height="28" rx="3"/><rect x="103" y="171" width="34" height="28" rx="3"/><rect x="142" y="171" width="34" height="28" rx="3"/><rect x="181" y="171" width="34" height="28" rx="3"/><rect x="220" y="171" width="38" height="28" rx="3"/>
+              </g>
+              <g fill="rgba(76,194,255,.08)" stroke="rgba(76,194,255,.3)" stroke-width=".8">
+                <rect x="64" y="208" width="108" height="30" rx="3"/><rect x="180" y="208" width="78" height="30" rx="3"/>
+              </g>
+              <text x="74" y="228" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(191,233,255,.78)">Cortex-X925</text>
+              <text x="190" y="228" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(191,233,255,.72)">Cortex-A725</text>
+              <text x="64" y="256" font-family="JetBrains Mono, monospace" font-size="9.5" fill="rgba(255,255,255,.4)">MEDIA Tek · CO-DESIGNED</text>
+            </g>
+
+            <!-- GPU -->
+            <g class="blk" data-blk="gpu" tabindex="0" role="button" aria-label="Blackwell RTX GPU block">
+              <rect class="shape" x="364" y="72" width="230" height="196" rx="12" fill="rgba(118,185,0,.1)" stroke="rgba(118,185,0,.65)"/>
+              <text x="382" y="102" font-family="JetBrains Mono, monospace" font-size="12.5" letter-spacing="1.4" fill="#a8e63c">BLACKWELL RTX</text>
+              <text x="382" y="121" font-family="JetBrains Mono, monospace" font-size="10" fill="rgba(255,255,255,.52)">6,144 CUDA · 48 SM</text>
+              <g fill="rgba(118,185,0,.2)" stroke="rgba(168,230,60,.45)" stroke-width=".7">
+                <rect x="382" y="134" width="21" height="19" rx="2"/><rect x="407" y="134" width="21" height="19" rx="2"/><rect x="432" y="134" width="21" height="19" rx="2"/><rect x="457" y="134" width="21" height="19" rx="2"/><rect x="482" y="134" width="21" height="19" rx="2"/><rect x="507" y="134" width="21" height="19" rx="2"/><rect x="532" y="134" width="21" height="19" rx="2"/><rect x="557" y="134" width="21" height="19" rx="2"/>
+                <rect x="382" y="157" width="21" height="19" rx="2"/><rect x="407" y="157" width="21" height="19" rx="2"/><rect x="432" y="157" width="21" height="19" rx="2"/><rect x="457" y="157" width="21" height="19" rx="2"/><rect x="482" y="157" width="21" height="19" rx="2"/><rect x="507" y="157" width="21" height="19" rx="2"/><rect x="532" y="157" width="21" height="19" rx="2"/><rect x="557" y="157" width="21" height="19" rx="2"/>
+                <rect x="382" y="180" width="21" height="19" rx="2"/><rect x="407" y="180" width="21" height="19" rx="2"/><rect x="432" y="180" width="21" height="19" rx="2"/><rect x="457" y="180" width="21" height="19" rx="2"/><rect x="482" y="180" width="21" height="19" rx="2"/><rect x="507" y="180" width="21" height="19" rx="2"/><rect x="532" y="180" width="21" height="19" rx="2"/><rect x="557" y="180" width="21" height="19" rx="2"/>
+                <rect x="382" y="203" width="21" height="19" rx="2"/><rect x="407" y="203" width="21" height="19" rx="2"/><rect x="432" y="203" width="21" height="19" rx="2"/><rect x="457" y="203" width="21" height="19" rx="2"/><rect x="482" y="203" width="21" height="19" rx="2"/><rect x="507" y="203" width="21" height="19" rx="2"/><rect x="532" y="203" width="21" height="19" rx="2"/><rect x="557" y="203" width="21" height="19" rx="2"/>
+              </g>
+              <text x="382" y="243" font-family="JetBrains Mono, monospace" font-size="9.5" fill="rgba(216,242,122,.75)">5th-GEN TENSOR · FP4 · RT</text>
+              <text x="382" y="258" font-family="JetBrains Mono, monospace" font-size="9.5" fill="rgba(255,255,255,.4)">DLSS · OPTIX · TENSORRT</text>
+            </g>
+
+            <!-- bridge -->
+            <g class="blk" data-blk="link" tabindex="0" role="button" aria-label="NVLink-C2C bridge">
+              <rect class="shape" x="290" y="118" width="60" height="104" rx="8" fill="rgba(118,185,0,.12)" stroke="rgba(216,242,122,.7)" stroke-width="1.3"/>
+              <text x="320" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing=".6" fill="#d8f27a">NVLink-C2C</text>
+              <text x="320" y="240" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a8e63c">≈600 GB/s</text>
+            </g>
+            <g class="flow-line" stroke="rgba(216,242,122,.85)" stroke-width="1.7" stroke-linecap="round"><path d="M282 140h76M282 168h76M282 196h76"/></g>
+
+            <!-- memory -->
+            <g class="blk" data-blk="mem" tabindex="0" role="button" aria-label="LPDDR5X unified memory pool">
+              <rect class="shape" x="46" y="352" width="548" height="108" rx="12" fill="rgba(76,194,255,.05)" stroke="rgba(76,194,255,.45)"/>
+              <text x="320" y="398" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="1.6" fill="#e6f5ff">LPDDR5X UNIFIED MEMORY</text>
+              <text x="320" y="421" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="rgba(255,255,255,.55)">up to 128GB · 256-bit interface · 273 GB/s</text>
+              <g class="pulse"><rect x="60" y="364" width="520" height="8" rx="4" fill="rgba(76,194,255,.16)"/></g>
+              <text x="320" y="446" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" fill="rgba(168,230,60,.7)">ONE POOL · CPU + GPU + NPU</text>
+            </g>
+            <g class="flow-slow" stroke="rgba(76,194,255,.55)" stroke-width="1.5" fill="none"><path d="M110 268v84M160 268v84M210 268v84M320 222v130"/></g>
+            <g class="flow-slow" stroke="rgba(168,230,60,.6)" stroke-width="1.5" fill="none"><path d="M420 268v84M470 268v84M520 268v84"/></g>
+
+            <text x="320" y="498" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" letter-spacing="1.6" fill="#a8e63c">UP TO 1 PFLOP FP4 (SPARSE)<tspan fill="rgba(255,255,255,.35)"> · 45–80W</tspan></text>
+            <text x="320" y="516" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="rgba(255,255,255,.32)">Hover, tap, or use Tab + Enter on a block</text>
+          </svg>
+          <div class="die-legend" role="group" aria-label="Diagram regions">
+            <button type="button" data-blk="cpu" aria-pressed="false"><span class="sw" style="background:#4cc2ff"></span>Grace CPU</button>
+            <button type="button" data-blk="gpu" aria-pressed="false"><span class="sw" style="background:#76b900"></span>Blackwell GPU</button>
+            <button type="button" data-blk="link" aria-pressed="false"><span class="sw" style="background:#d8f27a"></span>NVLink-C2C</button>
+            <button type="button" data-blk="mem" aria-pressed="false"><span class="sw" style="background:#2c6f96"></span>Memory pool</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="die-info" id="dieInfo" aria-live="polite">
+          <h3><span class="tag">Selected region</span><span id="dieTitle">Two dielets, joined in 2.5D</span></h3>
+          <p id="dieBody">Pick a block on the left. RTX Spark is not one chip in the usual sense: TechInsights&rsquo; teardown found two TSMC 3nm dielets &mdash; an &ldquo;S-die&rdquo; carrying the CPU and memory subsystem and a &ldquo;G-die&rdquo; carrying the Blackwell GPU &mdash; joined in 2.5D packaging using Amkor S-SWIFT fan-out, a first for a commercial product.<sup class="fn"><a href="#src-17">17</a></sup> Everything below sits inside that one package.</p>
+        </div>
+
+        <div class="tframe shrink auto" style="margin-top:26px">
+          <table aria-label="N1X configurations">
+            <thead><tr><th scope="col">Config</th><th scope="col">N1X flagship</th><th scope="col">N1X cut-down</th></tr></thead>
+            <tbody>
+              <tr><th scope="row" class="k" style="text-align:left;font-weight:500;color:var(--ink-2);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase">GPU</th><td>6,144-core Blackwell RTX (48 SMs), 5th-gen Tensor (FP4)</td><td>5,120-core Blackwell RTX (40 SMs)</td></tr>
+              <tr><th scope="row" style="text-align:left;font-weight:500;color:var(--ink-2);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase">CPU</th><td>20-core NVIDIA Grace (10× Cortex-X925 + 10× Cortex-A725)</td><td>18-core Grace</td></tr>
+              <tr><th scope="row" style="text-align:left;font-weight:500;color:var(--ink-2);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase">TDP (laptop)</th><td>45–80W</td><td>45–80W</td></tr>
+              <tr><th scope="row" style="text-align:left;font-weight:500;color:var(--ink-2);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase">Memory in Surface SKUs</th><td>32–128GB</td><td>24–32GB</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" style="margin-top:10px">Both laptop columns are labelled &ldquo;RTX Spark N1X&rdquo; by NVIDIA.<sup class="fn"><a href="#src-2">2</a></sup> The 18-core part&rsquo;s memory ceiling is a live source disagreement: NVIDIA&rsquo;s spec table says 64GB, The Verge reported 32GB, and Surface&rsquo;s own configurator ships it only with 24GB or 32GB.</p>
+      </div>
+    </div>
+
+    <div class="split reveal d2" style="margin-top:clamp(40px,5vw,64px)">
+      <div>
+        <h3>The honest constraint is bandwidth</h3>
+        <ul class="ticks" style="margin-top:18px">
+          <li><strong>Interconnect.</strong> NVLink-C2C between CPU and GPU at about 600 GB/s &mdash; 5× PCIe Gen 5 bandwidth.<sup class="fn"><a href="#src-14">14</a></sup></li>
+          <li><strong>Memory.</strong> Up to 128GB LPDDR5X on a 256-bit interface, 273 GB/s bandwidth (GB10 spec). This is the honest constraint: every independent benchmark shows LLM generation speed is bandwidth-bound.<sup class="fn"><a href="#src-5">5</a></sup><sup class="fn"><a href="#src-15">15</a></sup></li>
+          <li><strong>&ldquo;1 petaflop.&rdquo;</strong> Theoretical FP4 with sparsity, per Microsoft&rsquo;s own footnote. Hot Chips 2025 slides list about 31 TFLOPS FP32 and 1,000 TOPS NVFP4 for GB10.<sup class="fn"><a href="#src-16">16</a></sup></li>
+          <li><strong>Packaging.</strong> Two TSMC 3nm dielets &mdash; &ldquo;S-die&rdquo; (CPU + memory subsystem) and &ldquo;G-die&rdquo; (Blackwell GPU) &mdash; joined in 2.5D. TechInsights identified Amkor S-SWIFT fan-out, a first for a commercial product.<sup class="fn"><a href="#src-17">17</a></sup></li>
+          <li><strong>Co-design.</strong> MediaTek co-designed the CPU. SVP Vince Hu: &ldquo;With RTX Spark, MediaTek and NVIDIA bring unprecedented local AI supercomputing directly to consumer PCs.&rdquo;<sup class="fn"><a href="#src-18">18</a></sup></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Claims, caveats, and the platform layer</h3>
+        <div class="caveat" style="margin:18px 0 20px">
+          <div class="hd">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 6v3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11.8" r=".85" fill="currentColor"/></svg>
+            Unsubstantiated efficiency claim
+          </div>
+          <p>NVIDIA calls RTX Spark &ldquo;the most power-efficient RTX chip ever made&rdquo; &mdash; with, as The Verge noted, &ldquo;not so much as a single statistic or chart to back that up.&rdquo;<sup class="fn"><a href="#src-19">19</a></sup></p>
+        </div>
+        <ul class="ticks b" style="margin-bottom:22px">
+          <li><strong>Not shipping this year.</strong> A smaller N1 family (12-/10-core, 2,560/2,048 CUDA) exists in leaks but is not shipping in 2026.<sup class="fn"><a href="#src-20">20</a></sup></li>
+          <li><strong>Microsoft wrote the platform layer.</strong> Workload Profile Scheduling for the 20-core CPU, its Power and Thermal Framework, Prism emulation tuning, and a higher, smarter GPU-accessible memory limit with larger page sizes on unified-memory systems.<sup class="fn"><a href="#src-21">21</a></sup></li>
+        </ul>
+        <p class="small">Term, once: <strong>unified memory</strong> means the CPU and GPU address the same physical pool instead of copying work across a PCIe bus &mdash; which is what lets a 128GB laptop hold a model that no consumer GPU of matching cost could fit in VRAM.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 — SURFACE LAPTOP ULTRA
+     ============================================================ -->
+<section class="sec" id="s3" aria-labelledby="h1-3">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow"><span class="n">03</span><span>Surface Laptop Ultra</span><span class="rule"></span><span class="tag">Microsoft&rsquo;s tagline: &ldquo;The new shape of power&rdquo;</span></div>
+      <h2 id="h1-3">A MacBook Pro competitor that <span class="grad-b">opens like a Surface</span></h2>
+      <p class="deck">Microsoft&rsquo;s positioning is blunt: the most powerful Surface Laptop ever, aimed at creators, developers and AI builders &mdash; a direct MacBook Pro competitor. Under the lid is the N1X; around it is the most heavily re-engineered chassis Microsoft has shipped.</p>
+    </div>
+
+    <div class="fcards reveal d1">
+      <div class="card">
+        <div class="fic" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><rect x="3" y="12" width="18" height="9" rx="3" stroke="#a8e63c" stroke-width="1.5"/><path d="M21 14.5h3.5v4H21" stroke="#a8e63c" stroke-width="1.5"/><path d="M27 8c2.4 2.6 2.4 13.4 0 16" stroke="#76b900" stroke-width="1.5" stroke-linecap="round"/><path d="M24.2 10.6c1.5 1.8 1.5 9 0 10.8" stroke="#76b900" stroke-width="1.3" stroke-linecap="round" opacity=".7"/><path d="M6.5 16.5h11" stroke="#a8e63c" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h4><span class="sub">Signature feature 01</span>Magnetic Connect</h4>
+          <p>&ldquo;The world&rsquo;s first built-in magnetic USB-C charging on a laptop.&rdquo; Magnets surround a standard USB-C port on the right side; any USB-C cable works, and the port remains fully functional for video and data. The Verge&rsquo;s behind-the-scenes counted roughly 300 iterations to get the pull strength right.<sup class="fn"><a href="#src-24">24</a></sup></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="fic" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="4" stroke="#a8e63c" stroke-width="1.5"/><g stroke="#a8e63c" stroke-width="1.5" stroke-linecap="round"><path d="M16 11c0-4 3-6 6-6 .6 3.4-1.4 6-6 6Z"/><path d="M21 21c-2.8 2.8-6.4 2.4-8 .8 2-2.8 5.6-3.4 8-.8Z"/><path d="M11 21c-4 0-6-2.6-6-5.6 3.4-.4 6 1.6 6 5.6Z"/></g><circle cx="16" cy="16" r="11" stroke="#76b900" stroke-width="1" stroke-dasharray="2 4"/></svg>
+        </div>
+        <div>
+          <h4><span class="sub">Signature feature 02</span>Built for sustained performance</h4>
+          <p>A new thermal architecture: smaller motherboard, bigger fans, bigger battery, and an elevated base to feed airflow. Microsoft claims up to 2.5× the thermal capacity of the Surface Laptop 15-inch (8th Edition).<sup class="fn"><a href="#src-24">24</a></sup></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="fic" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M20.5 5.5c-3.2 0-5.6 2.6-5.2 5.8L6 20.6a2.2 2.2 0 0 0 3.1 3.1l9.3-9.3c3.2.4 5.8-2 5.8-5.2l-3 3-2.8-.7-.7-2.8 2.8-3Z" stroke="#a8e63c" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.5 23.7h.01" stroke="#a8e63c" stroke-width="2" stroke-linecap="round"/><path d="M24 20l3.5 3.5-2 2L22 22" stroke="#76b900" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4><span class="sub">Signature feature 03</span>Repairable by design</h4>
+          <p>No glued parts, QR-code repair guidance, internal wayfinding, and a removable M.2 SSD. Engadget notes user-replaceable storage that a reviewer swapped for a 2TB third-party drive.<sup class="fn"><a href="#src-25">25</a></sup></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="fic" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><rect x="7" y="7" width="18" height="18" rx="4" stroke="#a8e63c" stroke-width="1.5"/><rect x="12.5" y="12.5" width="7" height="7" rx="1.5" fill="rgba(168,230,60,.35)" stroke="#a8e63c" stroke-width="1.2"/><g stroke="#76b900" stroke-width="1.4" stroke-linecap="round"><path d="M12 7V4M16 7V4M20 7V4M12 28v-3M16 28v-3M20 28v-3M7 12H4M7 16H4M7 20H4M28 12h-3M28 16h-3M28 20h-3"/></g></svg>
+        </div>
+        <div>
+          <h4><span class="sub">Signature feature 04</span>Local AI headroom</h4>
+          <p>Run 120B-parameter models locally. Microsoft event materials went further, showing &ldquo;up to 284 billion parameter models run locally on RTX Spark laptops&rdquo;; The Verge reported Microsoft claims compressed 280B models.<sup class="fn"><a href="#src-26">26</a></sup><sup class="fn"><a href="#src-27">27</a></sup></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="fic b" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M16 4l10 4v7.5c0 6-4.2 10.6-10 12.5-5.8-1.9-10-6.5-10-12.5V8l10-4Z" stroke="#4cc2ff" stroke-width="1.5" stroke-linejoin="round"/><path d="M11.5 16.2l3.2 3.3 6-6.6" stroke="#4cc2ff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4><span class="sub">Signature feature 05</span>Copilot+ capable, unlabeled</h4>
+          <p>The chip includes an NPU meeting the 40-TOPS Copilot+ bar, though Microsoft has retired the &ldquo;Copilot+ PC&rdquo; label from Surface marketing. &ldquo;These are not called Copilot+ PCs. They do meet all the requirements of our previous bar,&rdquo; said Brett Ostrum, Surface CVP.<sup class="fn"><a href="#src-28">28</a></sup></p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="reveal d2" style="margin:clamp(48px,5.6vw,74px) 0 16px">The full specification</h3>
+    <div class="spec reveal d2">
+      <dl>
+        <div class="row"><dt>Chip</dt><dd>NVIDIA RTX Spark N1X &mdash; 18-core CPU / 5,120-core GPU, or 20-core CPU / 6,144-core GPU; up to 1 PFLOP FP4 (sparse); runs models above 120B parameters locally; full CUDA.</dd></div>
+        <div class="row"><dt>Display</dt><dd>15&Prime; PixelSense Ultra mini-LED touchscreen, 3270×2180 (262 PPI), 3:2, up to 120Hz dynamic; SDR 1,000 nits / HDR 2,000 nits peak (10% window), 100,000:1 contrast, 100% DCI-P3 (D65) individually color-calibrated, Dolby Vision IQ, anti-reflective, 10-point touch. <span class="u">Touch only &mdash; no pen support.</span> Microsoft claims the brightest peak HDR of any laptop, &ldquo;up to 25% brighter peak HDR than MacBook Pro M5 [Pro]&rdquo; against published M5 Pro specs.<sup class="fn"><a href="#src-23">23</a></sup></dd></div>
+        <div class="row"><dt>Memory</dt><dd>24 / 32 / 48 / 64 / 128GB LPDDR5X unified &mdash; one pool shared by CPU and GPU. <span class="u">24GB SKUs ship Windows 11 Home; 32GB and up ship Pro.</span></dd></div>
+        <div class="row"><dt>Storage</dt><dd>User-removable M.2 2280 SSD &mdash; 512GB (PCIe Gen 4), 1TB / 2TB (Gen 5). Published repair guides; parts via the Microsoft Store and iFixit.</dd></div>
+        <div class="row"><dt>Ports</dt><dd>3× USB-C / USB4 40Gbps (all support 140W charging and DisplayPort 2.1; up to three 4K@60Hz external displays), HDMI 2.1b, USB-A (10Gbps), full-size SD reader, 3.5mm jack.</dd></div>
+        <div class="row"><dt>Wireless</dt><dd>Wi-Fi 7 + Bluetooth 5.4 (LE Audio).</dd></div>
+        <div class="row"><dt>Battery</dt><dd>92Wh (reported by ServeTheHome, PCWorld and B&amp;H; Microsoft publishes runtime only): up to 15 hours local video playback, up to 12 hours active web usage on Microsoft&rsquo;s tests at 150 nits. Over 99% GPU performance on battery is claimed.</dd></div>
+        <div class="row"><dt>Thermals</dt><dd>Dual-fan, &ldquo;largest fans ever in a Surface,&rdquo; up to 2.5× the thermal capacity of the Surface Laptop 15-inch (8th Ed.). Microsoft confirmed a 110W TDP design for the superchip; a 140W USB-C adapter ships in the box.</dd></div>
+        <div class="row"><dt>Camera / audio</dt><dd>1080p Surface Studio Camera with Windows Hello; quad Omnisonic speakers with Dolby Atmos; dual Studio Mics.</dd></div>
+        <div class="row"><dt>Input</dt><dd>Backlit keyboard; haptic touchpad 30% larger than the Surface Laptop 8th Edition &mdash; Microsoft&rsquo;s largest ever.</dd></div>
+        <div class="row"><dt>Size / weight</dt><dd>328.8 × 238.7 mm; 17.99mm thick (19.16mm with feet) &mdash; &ldquo;under 18mm&rdquo;; 4.41 lb (2.0 kg).</dd></div>
+        <div class="row"><dt>Materials</dt><dd>CNC-machined aluminum; Platinum and Nightfall.</dd></div>
+        <div class="row"><dt>Security</dt><dd>Windows 11 Secured-core PC, TPM 2.0, BitLocker, Surface UEFI.</dd></div>
+      </dl>
+    </div>
+    <p class="note" style="margin-top:12px">Source: official Microsoft spec sheet, compiled by researcher.<sup class="fn"><a href="#src-22">22</a></sup></p>
+
+    <h3 class="reveal d2" style="margin:clamp(48px,5.6vw,74px) 0 16px">What reviewers say</h3>
+    <div class="quotes reveal d2">
+      <figure class="quote">
+        <p>It feels better than any other Windows laptop I&rsquo;ve held&hellip; a beautiful beast powered by NVIDIA&rsquo;s RTX Spark.</p>
+        <figcaption><b>Engadget</b> · hands-on <sup class="fn"><a href="#src-25">25</a></sup></figcaption>
+      </figure>
+      <figure class="quote">
+        <p>Easily one of the best laptops I&rsquo;ve tested &mdash; so beautifully designed it almost makes RTX Spark feel like a side character.</p>
+        <figcaption><b>Tom&rsquo;s Guide</b> · hands-on <sup class="fn"><a href="#src-29">29</a></sup></figcaption>
+      </figure>
+      <figure class="quote">
+        <p>Surface Laptop Ultra might be the best laptop ever made.</p>
+        <figcaption><b>Windows Central</b> · headline <sup class="fn"><a href="#src-30">30</a></sup></figcaption>
+      </figure>
+    </div>
+    <p class="small reveal d2" style="margin-top:16px">Engadget also ran <em>Gears of War: E-Day</em> &ldquo;smoothly at slightly more than 1080p&rdquo; &mdash; on battery and plugged in.<sup class="fn"><a href="#src-25">25</a></sup></p>
+
+    <div class="caveat reveal d3" style="margin-top:clamp(28px,3.4vw,40px)">
+      <div class="hd">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 6v3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11.8" r=".85" fill="currentColor"/></svg>
+        Honest caveat &mdash; the only independent performance data is pre-release
+      </div>
+      <p>The single month of independent testing came from a pre-release prototype (EV1.5, July 2026): Cinebench 2024 multi-thread 1,386; GPU results &ldquo;matched roughly RTX 4070&rdquo; where tests ran; driver bugs included erratic GPU clocks and crashes. The author&rsquo;s own verdict: &ldquo;It&rsquo;s not actually that good. Not yet, anyway.&rdquo; Retail reviews are pending &mdash; laptops ship October 16.<sup class="fn"><a href="#src-31">31</a></sup></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — SURFACE RTX SPARK DEV BOX
+     ============================================================ -->
+<section class="sec" id="s4" aria-labelledby="h1-4">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow"><span class="n">04</span><span>Surface RTX Spark Dev Box</span><span class="rule"></span><span class="tag">Project Zenith family</span></div>
+      <h2 id="h1-4">A petaflop for your desktop</h2>
+      <p class="deck">Microsoft&rsquo;s Windows-centric answer to the Linux DGX Spark &mdash; part of the &ldquo;Project Zenith&rdquo; family of devices, and a box whose chassis <em>is</em> the heatsink.<sup class="fn"><a href="#src-32">32</a></sup></p>
+    </div>
+
+    <div class="split reveal d1">
+      <div>
+        <div class="spec">
+          <dl>
+            <div class="row"><dt>Chip</dt><dd>RTX Spark N1X &mdash; 20-core CPU + 6,144-core GPU; 1 PFLOP FP4; 120B+ parameter models.</dd></div>
+            <div class="row"><dt>Memory / storage</dt><dd>128GB LPDDR5X unified; 2TB PCIe Gen5 SSD (removable).</dd></div>
+            <div class="row"><dt>Thermal</dt><dd>100W envelope; monolithic anodized aluminum chassis doubles as the heatsink; 1,000 air vents &mdash; &ldquo;a nod to its 1,000 teraflops&rdquo;; 165W external PSU.</dd></div>
+            <div class="row"><dt>Size / weight</dt><dd>326.5 × 172.0 × 42.9 mm (12.85 × 6.77 × 1.69 in), 2.0 kg (4.4 lb). Layered &ldquo;inverted ziggurat&rdquo; aluminum design with a perforated grid top &mdash; Neowin likens it to the Mac Pro&rsquo;s cheese grater.</dd></div>
+            <div class="row"><dt>Ports (rear)</dt><dd>2× USB-C 10Gbps, USB-A 5Gbps, HDMI 2.1b, 3.5mm combo, RJ45 Ethernet <span class="u">(speed unconfirmed)</span>. No ConnectX-7 &mdash; the biggest divergence from DGX Spark&rsquo;s 200GbE clustering story.<sup class="fn"><a href="#src-13">13</a></sup></dd></div>
+            <div class="row"><dt>Wireless</dt><dd>Wi-Fi 7 + Bluetooth 5.4.</dd></div>
+            <div class="row"><dt>Operating system</dt><dd>Windows 11 Pro, developer-optimized, Secured-core PC (BitLocker, Defender, Entra ID, Intune).</dd></div>
+            <div class="row"><dt>Price / availability</dt><dd>$5,999.99 (MSRP $5,999). Microsoft.com exclusive, US only; ships from November 24, 2026. External monitor and keyboard required, sold separately.<sup class="fn"><a href="#src-2">2</a></sup><sup class="fn"><a href="#src-32">32</a></sup></dd></div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <div class="card edge-ms">
+          <h4><span class="sub" style="color:var(--blu)">Out of the box</span>Preloaded for agents</h4>
+          <p>Visual Studio Code, GitHub Copilot in Windows Terminal, WSL, PowerShell 7, Git, GitHub CLI, Python, Node, Coreutils for Windows, and Intelligent Terminal &mdash; AI assistance in the command line.</p>
+        </div>
+        <div class="card edge-ms" style="margin-top:14px">
+          <h4><span class="sub" style="color:var(--blu)">Software stack</span>Local inference, wired in</h4>
+          <p>Windows ML with the TensorRT-RTX execution provider; local models including &ldquo;Aion 1.0 Instruct&rdquo; for agent tool calling. GitHub Copilot&rsquo;s intelligent routing can offload up to 20% of workloads to local MAI-1-Code-Flash and Nemotron-3-Super.<sup class="fn"><a href="#src-2">2</a></sup></p>
+        </div>
+
+        <h3 style="margin:clamp(30px,3.6vw,42px) 0 14px">Dev Box vs DGX Spark</h3>
+        <div class="tframe shrink auto">
+          <table aria-label="Surface RTX Spark Dev Box versus NVIDIA DGX Spark">
+            <thead><tr><th scope="col">Attribute</th><th scope="col">Surface Dev Box</th><th scope="col">NVIDIA DGX Spark</th></tr></thead>
+            <tbody>
+              <tr><th scope="row" class="rt">Chip</th><td>RTX Spark N1X (GB10-class)</td><td>GB10 Grace Blackwell</td></tr>
+              <tr><th scope="row" class="rt">Memory</th><td>128GB LPDDR5X</td><td>64 or 128GB LPDDR5X (273 GB/s)</td></tr>
+              <tr><th scope="row" class="rt">Networking</th><td>Ethernet + Wi-Fi 7 &mdash; no ConnectX-7</td><td>ConnectX-7 200GbE QSFP (two-box clustering)</td></tr>
+              <tr><th scope="row" class="rt">OS</th><td>Windows 11 Pro</td><td>DGX OS (Ubuntu Linux)</td></tr>
+              <tr><th scope="row" class="rt">Power</th><td>100W envelope, 165W PSU</td><td>140W TDP, 240W PSU</td></tr>
+              <tr><th scope="row" class="rt">Price</th><td class="price">$5,999.99</td><td class="price" style="color:var(--ink-2)">$4,999 (64GB, Oct 23)<br>~$6,950 (128GB, raised Oct 2)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small" style="margin-top:14px"><strong>Who each is for.</strong> DGX Spark is for CUDA/Linux AI researchers; the Dev Box is for Windows-native developers with Entra and Intune governance and Copilot workflows. At $5,999.99 the Dev Box undercuts a 128GB DGX Spark by roughly $950 but costs $2,000 more than AMD&rsquo;s Ryzen AI Halo 128GB boxes.<sup class="fn"><a href="#src-13">13</a></sup><sup class="fn"><a href="#src-9">9</a></sup></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5 — PRICING
+     ============================================================ -->
+<section class="sec" id="s5" aria-labelledby="h1-5">
+  <div class="wrap-wide" style="padding:0">
+    <div class="wrap" style="padding:0">
+      <div class="sec-head reveal">
+        <div class="eyebrow"><span class="n">05</span><span>Pricing</span><span class="rule"></span><span class="tag">MSRP USD · Microsoft Store, Oct 7 2026</span></div>
+        <h2 id="h1-5">Eleven ways to buy <span class="grad">the same laptop</span></h2>
+        <p class="deck">Every US SKU Microsoft listed at launch, then the partner machines that undercut or out-spec it, and finally the counter-arguments about what these numbers mean in a memory market that keeps repricing itself.</p>
+      </div>
+    </div>
+
+    <div class="wrap-wide reveal d1" style="padding:0">
+      <div class="tbl-cap">
+        <h3>Surface Laptop Ultra &mdash; every US SKU</h3>
+        <span class="note">Microsoft Store, October 7, 2026<sup class="fn"><a href="#src-2">2</a></sup> · scroll the table sideways on narrow screens</span>
+      </div>
+      <div class="tframe" id="skuFrame">
+        <table aria-label="Surface Laptop Ultra United States SKUs and prices">
+          <thead>
+            <tr>
+              <th scope="col">#</th><th scope="col">Chip (CPU / GPU)</th><th scope="col">RAM</th><th scope="col">SSD</th>
+              <th scope="col">Color</th><th scope="col">Edition</th><th scope="col" style="text-align:right">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num" style="color:var(--ink-3)">01</td><td class="k">18-core / 5,120-core</td><td>24GB</td><td>512GB <span class="chip">Gen 4</span></td><td><span class="sw" style="background:#c9ccce"></span>Platinum</td><td><span class="chip home">Home</span></td><td class="price">$2,599.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">02</td><td class="k">18-core / 5,120-core</td><td>24GB</td><td>1TB</td><td><span class="sw" style="background:#c9ccce"></span>Platinum</td><td><span class="chip home">Home</span></td><td class="price">$2,999.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">03</td><td class="k">18-core / 5,120-core</td><td>24GB</td><td>1TB</td><td><span class="sw" style="background:#2b3138"></span>Nightfall</td><td><span class="chip home">Home</span></td><td class="price">$2,999.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">04</td><td class="k">18-core / 5,120-core</td><td>32GB</td><td>1TB</td><td><span class="sw" style="background:#c9ccce"></span>Platinum</td><td><span class="chip pro">Pro</span></td><td class="price">$3,299.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">05</td><td class="k">18-core / 5,120-core</td><td>32GB</td><td>1TB</td><td><span class="sw" style="background:#2b3138"></span>Nightfall</td><td><span class="chip pro">Pro</span></td><td class="price">$3,299.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">06</td><td class="k">20-core / 6,144-core</td><td>32GB</td><td>1TB</td><td><span class="sw" style="background:#c9ccce"></span>Platinum</td><td><span class="chip pro">Pro</span></td><td class="price">$3,699.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">07</td><td class="k">20-core / 6,144-core</td><td>32GB</td><td>1TB</td><td><span class="sw" style="background:#2b3138"></span>Nightfall</td><td><span class="chip pro">Pro</span></td><td class="price">$3,699.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">08</td><td class="k">20-core / 6,144-core</td><td>48GB</td><td>1TB</td><td><span class="sw" style="background:#2b3138"></span>Nightfall</td><td><span class="chip pro">Pro</span></td><td class="price">$3,999.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">09</td><td class="k">20-core / 6,144-core</td><td>64GB</td><td>1TB</td><td><span class="sw" style="background:#2b3138"></span>Nightfall</td><td><span class="chip pro">Pro</span></td><td class="price">$4,299.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">10</td><td class="k">20-core / 6,144-core</td><td>64GB</td><td>2TB</td><td><span class="sw" style="background:#2b3138"></span>Nightfall</td><td><span class="chip pro">Pro</span></td><td class="price">$4,699.99</td></tr>
+            <tr><td class="num" style="color:var(--ink-3)">11</td><td class="k">20-core / 6,144-core</td><td>128GB</td><td>1TB</td><td><span class="sw" style="background:#2b3138"></span>Nightfall</td><td><span class="chip pro">Pro</span></td><td class="price">$5,899.99</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:16px;max-width:82ch">Surface Laptop Ultra for Business starts at $2,749.99; Microsoft Complete runs $249 / $319 / $399 for 2, 3 and 4 years. The 128GB flagship sold out at launch, per TechCrunch.<sup class="fn"><a href="#src-33">33</a></sup> The MacBook trade-in offer pays up to $1,000 cash back for an eligible MacBook Pro (US/Canada Microsoft Store online, purchases October 7 – November 23, 2026). Microsoft&rsquo;s own headline for it: &ldquo;Break up with your MacBook.&rdquo;<sup class="fn"><a href="#src-23">23</a></sup></p>
+
+      <h3 class="reveal d1" style="margin:clamp(48px,5.4vw,70px) 0 16px">Partner RTX Spark laptops &mdash; first wave</h3>
+      <p class="small reveal d1" style="margin-bottom:18px;max-width:80ch">All opened pre-order on October 7 and ship October 16, 2026.<sup class="fn"><a href="#src-34">34</a></sup></p>
+      <div class="tframe shrink reveal d1">
+        <table aria-label="Partner RTX Spark laptop first-wave pricing">
+          <thead><tr><th scope="col">Device</th><th scope="col">Highlights</th><th scope="col" style="text-align:right">From</th></tr></thead>
+          <tbody>
+            <tr><td class="k">ASUS ProArt P16</td><td>16&Prime; 4K 120Hz Lumina Pro OLED (1,600 nits), 12.9mm, 1.77 kg, 99.9Wh</td><td class="price">$2,799.99</td></tr>
+            <tr><td class="k">ASUS ProArt P14</td><td>14&Prime; 3K 120Hz OLED, 1.48 kg, 90Wh</td><td class="price">$2,599.99</td></tr>
+            <tr><td class="k">Dell XPS 16 Creator Edition</td><td>16&Prime; 3.2K Tandem OLED (1,000 nits, Pantone &Delta;E&lt;2), 17.8mm, 99Wh &mdash; first XPS on RTX Spark</td><td class="price">$3,799.99</td></tr>
+            <tr><td class="k">HP OmniBook Ultra 16</td><td>16&Prime; 2880×1800 OLED touch, 20-core standard, 99.9Wh</td><td class="price">$3,199.99</td></tr>
+            <tr><td class="k">Lenovo Yoga 9n 2-in-1</td><td>Convertible, 360°, dual-surface pen input, 99.9Wh</td><td class="price">$2,999.99</td></tr>
+            <tr><td class="k">MSI Prestige N16 Flip AI+</td><td>16&Prime; 3840×2400 Tandem OLED, 2-in-1, 99.9Wh</td><td class="price">$3,299.99</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:16px;max-width:82ch">The first wave tops out near $7,000 &mdash; The Verge: &ldquo;The first Nvidia RTX Spark laptops cost up to $7,000&rdquo; (the ASUS ProArt P16 at 128GB/2TB is about $6,999.99).<sup class="fn"><a href="#src-11">11</a></sup> Acer and GIGABYTE models follow; desktops and mini-PCs land later this year.</p>
+
+      <h3 class="reveal d2" style="margin:clamp(48px,5.4vw,70px) 0 16px">Price context &mdash; three readings of the same sticker</h3>
+      <div class="grid cols-3 reveal d2">
+        <div class="card edge-amb">
+          <div class="kicker-lbl">The market pressure</div>
+          <h4>Memory is in a global price crisis</h4>
+          <p>NVIDIA raised DGX Spark from $3,999 to $4,699 in February 2026, and again to about $6,950 on October 2, 2026.<sup class="fn"><a href="#src-7">7</a></sup><sup class="fn"><a href="#src-9">9</a></sup></p>
+        </div>
+        <div class="card edge-nv">
+          <div class="kicker-lbl">ServeTheHome&rsquo;s counterpoint</div>
+          <h4>Cheap, against the right rival</h4>
+          <p>The $5,899 128GB Surface undercuts &ldquo;the cheapest 14-inch MacBook Pro with the same amount of memory&hellip; by $800.&rdquo;<sup class="fn"><a href="#src-13">13</a></sup></p>
+        </div>
+        <div class="card edge-amb">
+          <div class="kicker-lbl">Reuters&rsquo; counterpoint</div>
+          <h4>Expensive, against the obvious one</h4>
+          <p>The $2,599 entry costs more than Apple&rsquo;s $1,999 base MacBook Pro (16GB vs 24GB). Analyst Anshel Sag of Moor Insights &amp; Strategy quipped that &ldquo;now the software is ready and the hardware is too expensive to actually run it locally.&rdquo;<sup class="fn"><a href="#src-35">35</a></sup></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 6 — PERFORMANCE
+     ============================================================ -->
+<section class="sec" id="s6" aria-labelledby="h1-6">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow"><span class="n">06</span><span>Performance &amp; what it can do</span><span class="rule"></span><span class="tag">Claims vs measurements</span></div>
+      <h2 id="h1-6">Three big numbers, and <span class="grad">one bandwidth ceiling</span></h2>
+      <p class="deck">NVIDIA published capability targets. Microsoft published comparison multipliers against a MacBook Pro. Independent measurements of the same silicon in a different box tell a more specific story: fast at eating prompts, limited at producing tokens.</p>
+    </div>
+
+    <h3 class="reveal d1">Capability targets <span class="claim">Vendor claim</span></h3>
+    <div class="caps reveal d1" style="margin-top:16px">
+      <div class="cap">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V5M4 19h16" stroke="#76b900" stroke-width="1.6" stroke-linecap="round"/><path d="M8 16V9m4 7v-4.5m4 4.5V6.5" stroke="#a8e63c" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <p>Run 120B-parameter LLMs with up to 1M tokens of context, locally<span>Unified memory</span></p>
+      </div>
+      <div class="cap">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z" stroke="#76b900" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9" stroke="#a8e63c" stroke-width="1.3"/></svg>
+        <p>Render 90GB+ 3D scenes with OptiX and DLSS<span>Scene memory</span></p>
+      </div>
+      <div class="cap">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#76b900" stroke-width="1.5"/><path d="M3 9h18M8 5v14" stroke="#a8e63c" stroke-width="1.3"/><path d="M11.5 12.5l3 1.8-3 1.8v-3.6Z" fill="#a8e63c"/></svg>
+        <p>Edit 12K 4:2:2 video with the Blackwell decoder<span>Decode pipeline</span></p>
+      </div>
+      <div class="cap">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1m0-12.8-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="#76b900" stroke-width="1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="3.4" stroke="#a8e63c" stroke-width="1.6"/></svg>
+        <p>Generate 4K AI video<span>ComfyUI workflows</span></p>
+      </div>
+      <div class="cap">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 8h11a4 4 0 0 1 3.9 4.9l-.9 3.6A2.6 2.6 0 0 1 16 16.4l-1.4-1.4h-5.2L8 16.4a2.6 2.6 0 0 1-4.5.1l-.9-3.6A4 4 0 0 1 6.5 8Z" stroke="#76b900" stroke-width="1.4" stroke-linejoin="round"/><path d="M8.6 10.8v2.4M7.4 12h2.4M15.4 11.4h.01M17.2 13.2h.01" stroke="#a8e63c" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <p>Play AAA games at 1440p, 100+ fps, with ray tracing + DLSS + Reflex<span>Gaming target</span></p>
+      </div>
+      <div class="cap" style="border-color:rgba(118,185,0,.3);background:rgba(118,185,0,.05)">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="#a8e63c" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <p>All five are NVIDIA&rsquo;s own figures, published May 31, 2026.<span>Source 1 — read with §9</span></p>
+      </div>
+    </div>
+
+    <h3 class="reveal d1" style="margin:clamp(48px,5.6vw,72px) 0 8px">Versus the MacBook Pro 16&Prime; M5 Pro (64GB)</h3>
+    <p class="small reveal d1" style="max-width:78ch">Commissioned tests run by Microsoft and NVIDIA, September 2026. The hatched segment at the left of each track is the MacBook Pro at 1×.<sup class="fn"><a href="#src-36">36</a></sup></p>
+    <div class="bench reveal d1" id="bench" role="img" aria-label="Three horizontal bars: 2.1 times faster time to first token, 4.3 times faster AI image generation, 6.2 times faster AI video generation, versus a MacBook Pro 16 inch M5 Pro with 64GB.">
+      <div class="bar-row">
+        <div class="bar-top"><span class="mult">2.1×</span><span class="lbl">Time to first token<small>llama.cpp · Qwen3.5 27B Q4K-Medium · 8,192-token prompt</small></span></div>
+        <div class="track" style="--w:33.9%"><div class="base" aria-hidden="true"></div><div class="fill"></div><span class="tag">RTX Spark N1X</span></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-top"><span class="mult">4.3×</span><span class="lbl">AI image generation<small>ComfyUI · FLUX.2 Klein 4B · NVFP4 · 1024×1024</small></span></div>
+        <div class="track" style="--w:69.4%"><div class="base" aria-hidden="true"></div><div class="fill"></div><span class="tag">RTX Spark N1X</span></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-top"><span class="mult">6.2×</span><span class="lbl">AI video generation<small>ComfyUI · LTX 2.3 22B · NVFP4 · 720p</small></span></div>
+        <div class="track" style="--w:100%"><div class="base" aria-hidden="true"></div><div class="fill"></div><span class="tag">RTX Spark N1X</span></div>
+      </div>
+      <div class="bar-legend"><span class="b"><i></i>MacBook Pro 16&Prime; M5 Pro (64GB) = 1×</span><span class="g"><i></i>RTX Spark N1X, relative speed</span><span>Vendor-commissioned · test configs per Microsoft footnotes 5–8</span></div>
+    </div>
+
+    <h3 class="reveal d2" style="margin:clamp(48px,5.6vw,72px) 0 8px">Measured reality &mdash; same silicon class, different box</h3>
+    <p class="small reveal d2" style="max-width:78ch">Numbers published for the 128GB DGX Spark, which carries the same GB10-class silicon.<sup class="fn"><a href="#src-37">37</a></sup></p>
+    <div class="reveal d2" style="margin-top:18px">
+      <div class="mrow"><div class="k">NVIDIA official</div><div class="v">GPT-OSS-120B MXFP4: 1,725 tokens/s prompt, 55.4 tokens/s generation. GPT-OSS-20B: 82.7 tokens/s generation. Flux.1 12B FP4: one 1024² image every 2.6 seconds. Llama 3.3 70B QLoRA fine-tuning: 5,079 tokens/s.</div></div>
+      <div class="mrow"><div class="k">LMSYS verdict</div><div class="v">Decode is bandwidth-bound &mdash; &ldquo;273 GB/s is the key bottleneck.&rdquo; Conclusion: the machine is &ldquo;best suited for prototyping and experimentation rather than production.&rdquo;<sup class="fn"><a href="#src-15">15</a></sup></div></div>
+      <div class="mrow"><div class="k">Gaming, on stage</div><div class="v"><em>Gears of War: E-Day</em> ran at 60 fps on Ultra via Prism x86 emulation while a GitHub Copilot workload and a DaVinci Resolve mastering job ran simultaneously; Gizmodo&rsquo;s hands-on matched that.<sup class="fn"><a href="#src-38">38</a></sup></div></div>
+    </div>
+    <div class="caveat reveal d3" style="margin-top:clamp(24px,3vw,34px)">
+      <div class="hd">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 6v3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11.8" r=".85" fill="currentColor"/></svg>
+        Context for every number on this page
+      </div>
+      <p>Pre-release-prototype findings &mdash; driver bugs, roughly RTX 4070-class GPU results where tests ran at all &mdash; mean retail reviews are the real verdict. They are pending as of October 9, 2026.<sup class="fn"><a href="#src-31">31</a></sup></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 7 — MICROSOFT'S ECOSYSTEM PLAY
+     ============================================================ -->
+<section class="sec ms" id="s7" aria-labelledby="h1-7">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow"><span class="n">07</span><span>Microsoft&rsquo;s ecosystem play</span><span class="rule"></span><span class="tag">Windows as the home for hybrid intelligence</span></div>
+      <h2 id="h1-7">Agents that run <span class="grad-b">locally when it makes sense</span>, and reach the cloud when they must</h2>
+      <p class="deck">Microsoft&rsquo;s framing for the whole event: Windows becomes &ldquo;the home for hybrid intelligence&rdquo; &mdash; agents execute on the device when that is cheaper or more private, escalate to frontier models when they need to, and stay governable by the IT department either way.<sup class="fn"><a href="#src-39">39</a></sup></p>
+    </div>
+
+    <h3 class="reveal d1">7.1 &mdash; The agent security platform (the foundation)</h3>
+    <p class="small reveal d1" style="max-width:78ch;margin-bottom:20px">Three primitives: containment, identity, manageability.</p>
+    <div class="grid cols-2 reveal d1">
+      <div class="card edge-ms">
+        <h4>Microsoft Execution Containers, generally available</h4>
+        <p>Policy-driven sandboxing of files and network access, enforced at runtime and outside the agent&rsquo;s own control. Tiers run from process and session containers &mdash; a full isolated OS session with its own agent identity &mdash; up through WSLc, VMs, and Windows 365 for Agents. Code is public at github.com/microsoft/mxc.<sup class="fn"><a href="#src-39">39</a></sup><sup class="fn"><a href="#src-40">40</a></sup></p>
+        <div class="pills">
+          <span class="pill b"><b>Integrated:</b> Codex from OpenAI</span><span class="pill b">GitHub Copilot</span><span class="pill b">OpenClaw</span><span class="pill b">Replit</span><span class="pill b">LM Studio</span><span class="pill b">OpenShell (NVIDIA)</span><span class="pill b">Unsloth AI</span>
+          <span class="pill"><b>Committed:</b> Anthropic Claude Code</span><span class="pill">Box</span><span class="pill">Egnyte</span><span class="pill">Heidi Health</span><span class="pill">Hermes Agent (Nous Research)</span><span class="pill">Manus</span><span class="pill">Perplexity</span><span class="pill">Raycast</span><span class="pill">Simular</span>
+        </div>
+        <p class="small" style="margin-top:14px">Meta&rsquo;s Muse personal agent is &ldquo;coming soon as a native app on Windows with MXC integration.&rdquo;<sup class="fn"><a href="#src-39">39</a></sup></p>
+      </div>
+      <div>
+        <div class="card edge-ms">
+          <h4>Identity and governance</h4>
+          <p>Entra will soon distinguish agent activity from user activity. Agent 365 (GA May 1, 2026) plus Intune observe, secure and govern agents at scale; Defender and Purview extend the protections.<sup class="fn"><a href="#src-41">41</a></sup><sup class="fn"><a href="#src-42">42</a></sup></p>
+        </div>
+        <div class="quotes" style="margin-top:14px;grid-template-columns:1fr">
+          <figure class="quote blue">
+            <p>MXC is going to revolutionize how agents are built and deployed&hellip; Without it, agents are a complete nonstarter.</p>
+            <figcaption><b>Jensen Huang</b>, on stage <sup class="fn"><a href="#src-43">43</a></sup></figcaption>
+          </figure>
+          <figure class="quote blue">
+            <p>We are building these primitives directly into Windows, so agents can be secured, observed and governed.</p>
+            <figcaption><b>Pavan Davuluri</b>, EVP Windows + Devices <sup class="fn"><a href="#src-44">44</a></sup></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="reveal d2" style="margin:clamp(48px,5.6vw,72px) 0 20px">7.2 &mdash; Local intelligence (the models and the runtime)</h3>
+    <div class="grid cols-2 reveal d2">
+      <div class="card edge-ms">
+        <h4>MAI Code 1.1 Flash</h4>
+        <p>Microsoft&rsquo;s 137B-total / 6.8B-active coding model, running locally at 3-bit &mdash; about 80% smaller, roughly 53GB &mdash; with a 256K context window. GitHub reports 70.8% SWE-Bench Verified for the local quant.<sup class="fn"><a href="#src-45">45</a></sup></p>
+      </div>
+      <div class="card edge-ms">
+        <h4>NVIDIA and DeepSeek models, coming</h4>
+        <p>Nemotron at 70B+ in 2-bit lands at just over 20GB and is coming; DeepSeek V4 Flash (284B) runs locally on high-memory configurations.<sup class="fn"><a href="#src-39">39</a></sup></p>
+      </div>
+      <div class="card edge-ms">
+        <h4>GitHub HydraFusion</h4>
+        <p>GitHub&rsquo;s router picks the model per task &mdash; now including local ones. &ldquo;Hybrid intelligence on Windows, powered by HydraFusion is coming to the GitHub Copilot app, GitHub Copilot CLI and Visual Studio Code in experimental preview later in October.&rdquo; The keynote demo showed &ldquo;well over a million locally consumed tokens and only a few thousand purchased externally.&rdquo;<sup class="fn"><a href="#src-39">39</a></sup><sup class="fn"><a href="#src-46">46</a></sup></p>
+      </div>
+      <div class="card edge-ms">
+        <h4>The runtime layer</h4>
+        <p>llama.cpp support in Windows ML was announced; Windows ML adds a TensorRT-RTX execution provider, OpenAI-compatible local endpoints, and experimental native runtime APIs. Official PyTorch Arm64 builds ship with CUDA.<sup class="fn"><a href="#src-47">47</a></sup><sup class="fn"><a href="#src-48">48</a></sup></p>
+      </div>
+      <div class="card edge-ms" style="grid-column:1/-1">
+        <h4>New Copilot, supercharged with hybrid intelligence</h4>
+        <p>Copilot Home, Code and Autopilot (announced September 25, 2026) gain local context, local actions and local models &mdash; with permission &mdash; rolling out on Copilot+ PCs over the coming months.<sup class="fn"><a href="#src-39">39</a></sup></p>
+      </div>
+    </div>
+
+    <h3 class="reveal d2" style="margin:clamp(48px,5.6vw,72px) 0 20px">7.3 &mdash; Windows and gaming for everyone</h3>
+    <div class="split reveal d2">
+      <ul class="ticks b">
+        <li><strong>Actions in Search.</strong> Thousands of new &ldquo;actions&rdquo; straight from the taskbar &mdash; &ldquo;switch to dark mode,&rdquo; &ldquo;Text Elisa I&rsquo;ll be there soon&rdquo; &mdash; with opt-in Copilot in Search later this year.<sup class="fn"><a href="#src-39">39</a></sup></li>
+        <li><strong>Advanced Shader Delivery.</strong> <em>Gears of War: E-Day</em> is first; shader compilation drops from minutes to seconds.</li>
+        <li><strong>Anti-cheat momentum.</strong> Easy Anti-Cheat and BattlEye are on board; Activision&rsquo;s Ricochet is in development for ARM64. EA, Embark, Tencent and Ubisoft join Krafton, NetEase, Riot and Epic.</li>
+        <li><strong>Library at launch.</strong> &ldquo;Hundreds&rdquo; of games including Fortnite, Cyberpunk 2077, Alan Wake 2 and World of Warcraft; Call of Duty comes to RTX Spark in 2027.<sup class="fn"><a href="#src-49">49</a></sup></li>
+      </ul>
+      <div>
+        <div class="kicker-lbl">7.3b &mdash; The device ladder: Microsoft&rsquo;s explicit three-tier strategy</div>
+        <div class="ladder">
+          <div class="rung"><div class="lv">Tier 1</div><div><div class="nm">Copilot+ PCs</div><p>2 trillion+ local inferences per month across the installed base.</p></div></div>
+          <div class="rung"><div class="lv">Tier 2</div><div><div class="nm">&ldquo;Builder PCs&rdquo; &mdash; RTX Spark</div><p>The new middle: local models, local agents, RTX graphics.</p></div></div>
+          <div class="rung"><div class="lv">Tier 3</div><div><div class="nm">DGX Station for Windows</div><p>&ldquo;AI supercomputers&rdquo; for the desk, arriving Q4 2026.</p></div></div>
+        </div>
+        <p class="small" style="margin-top:14px">Source: the October 7 Windows Experience Blog.<sup class="fn"><a href="#src-39">39</a></sup></p>
+      </div>
+    </div>
+
+    <h3 class="reveal d2" style="margin:clamp(48px,5.6vw,72px) 0 20px">7.4 &mdash; The strategic bet</h3>
+    <div class="grid cols-3 reveal d2">
+      <div class="card edge-ms flat">
+        <div class="kicker-lbl">Windows-on-Arm history</div>
+        <p>Surface RT ran NVIDIA Tegra. Surface Pro X used Qualcomm SQ chips. Copilot+ launched on Snapdragon X in 2024. RTX Spark is the first time this decade that a vendor besides Qualcomm supplies the SoC for a Windows box &mdash; &ldquo;Microsoft has more riding on the Windows-on-Arm ecosystem than ever.&rdquo;<sup class="fn"><a href="#src-13">13</a></sup></p>
+      </div>
+      <div class="card edge-ms flat">
+        <div class="kicker-lbl">Who it is aimed at</div>
+        <p>ServeTheHome reads the Surface as &ldquo;a fresh broadside at&hellip; Apple,&rdquo; which has captured much of the developer market.<sup class="fn"><a href="#src-13">13</a></sup></p>
+      </div>
+      <div class="card edge-ms flat">
+        <div class="kicker-lbl">Qualcomm isn&rsquo;t standing still</div>
+        <p>New Surface Pro and Surface Laptop 2nd Editions with Snapdragon X2 Plus ship October 13 from $1,499 &mdash; the mainstream tier NVIDIA isn&rsquo;t playing in.<sup class="fn"><a href="#src-50">50</a></sup></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 8 — NVIDIA'S ECOSYSTEM PLAY
+     ============================================================ -->
+<section class="sec" id="s8" aria-labelledby="h1-8">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow"><span class="n">08</span><span>NVIDIA&rsquo;s ecosystem play</span><span class="rule"></span><span class="tag">30 years of stack, now on Arm</span></div>
+      <h2 id="h1-8">CUDA, RTX, DLSS, FP4 &mdash; <span class="grad">delivered to Windows on Arm</span> for the first time</h2>
+      <p class="deck">NVIDIA&rsquo;s pitch is not one chip but an installed base of software: CUDA, RTX, DLSS, FP4, TensorRT, OptiX, Reflex and G-SYNC, all running on an Arm Windows machine.<sup class="fn"><a href="#src-1">1</a></sup></p>
+    </div>
+
+    <h3 class="reveal d1">8.1 &mdash; Creators</h3>
+    <div class="grid cols-3 reveal d1" style="margin-top:16px">
+      <div class="card edge-nv">
+        <div class="fic" aria-hidden="true" style="width:42px;height:42px;margin-bottom:14px">
+          <svg viewBox="0 0 32 32" fill="none"><rect x="5" y="5" width="22" height="22" rx="5" stroke="#a8e63c" stroke-width="1.5"/><text x="16" y="21" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#a8e63c">Ps</text></svg>
+        </div>
+        <h4>Adobe, rearchitected</h4>
+        <p>Photoshop and Premiere rebuilt &ldquo;from the ground up&rdquo; for RTX Spark &mdash; up to 2× faster AI, editing, color and effects. A new Premiere pipeline taps unified memory, the Blackwell GPU and TensorRT for real-time editing and color; Substance 3D Painter and Stager run natively; the next-gen Photoshop engine adds GPU-accelerated compositing, live filters and HDR. Updates roll out alongside RTX Spark availability.</p>
+        <p class="small" style="margin-top:10px">Shantanu Narayen: &ldquo;Together, we are building AI-native creative experiences for RTX Spark.&rdquo;<sup class="fn"><a href="#src-1">1</a></sup></p>
+      </div>
+      <div class="card edge-nv">
+        <div class="fic" aria-hidden="true" style="width:42px;height:42px;margin-bottom:14px">
+          <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="#a8e63c" stroke-width="1.5"/><path d="M16 5c4 3.2 4 18.8 0 22M5 16h22" stroke="#76b900" stroke-width="1.3"/><path d="M8 10.5h16M8 21.5h16" stroke="#76b900" stroke-width="1.1"/></svg>
+        </div>
+        <h4>A broad creative bench</h4>
+        <p>Blackmagic Design ships DaVinci Resolve natively on Arm; OTOY Octane adds Render Network support; Blender, CapCut, Maxon Cinema 4D with Redshift, Topaz, Cubase, Bitwig and Affinity are listed &mdash; &ldquo;over 100 Windows software providers embracing the new RTX Spark platform.&rdquo;<sup class="fn"><a href="#src-1">1</a></sup><sup class="fn"><a href="#src-51">51</a></sup></p>
+      </div>
+      <div class="card edge-nv">
+        <div class="fic" aria-hidden="true" style="width:42px;height:42px;margin-bottom:14px">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M4 22l7-9 5 5.5 4-5 8 8.5" stroke="#a8e63c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="9.5" r="3" stroke="#76b900" stroke-width="1.5"/></svg>
+        </div>
+        <h4>DLSS 4.5 Ray Reconstruction</h4>
+        <p>A second-generation transformer model &mdash; &ldquo;35% more compute capability, 20% more parameters&rdquo; &mdash; shipped to 27 games in August 2026 and comes to Blender 5.3&rsquo;s Cycles this fall. RTX Video with 4× Frame Generation ships as a ComfyUI node for smoothing 15–20 fps AI video output.<sup class="fn"><a href="#src-52">52</a></sup><sup class="fn"><a href="#src-53">53</a></sup></p>
+      </div>
+    </div>
+
+    <h3 class="reveal d2" style="margin:clamp(48px,5.6vw,72px) 0 20px">8.2 &mdash; AI developers</h3>
+    <div class="grid cols-2 reveal d2">
+      <div class="card edge-nv">
+        <h4>CUDA Toolkit 13.4</h4>
+        <p>Enables native Windows-on-Arm development, with ARM64EC and cross-compilation. NVIDIA also ships an RTX Spark porting guide and a porting hub.<sup class="fn"><a href="#src-54">54</a></sup></p>
+      </div>
+      <div class="card edge-nv">
+        <h4>llama.cpp: 2× inference gains</h4>
+        <p>Multi-token prediction doubles inference on Qwen 27B-class models. Georgi Gerganov: &ldquo;RTX Spark laptops change the game by multiplying the amount of context processing and putting it directly into a beautiful, portable chassis.&rdquo;<sup class="fn"><a href="#src-1">1</a></sup><sup class="fn"><a href="#src-53">53</a></sup></p>
+      </div>
+      <div class="card edge-nv" style="grid-column:1/-1">
+        <h4>OpenShell &mdash; NVIDIA&rsquo;s open-source secure runtime for agents</h4>
+        <p>Sandboxed execution; a supervisor that checks every outbound request against policy; credential management; YAML policies compiled to OPA/Rego; OCSF logging; and a formal policy prover that mathematically verifies permissions. On Windows it integrates with MXC. Hermes Agent (Nous Research) and OpenClaw adopt it; named enterprise users include Cadence, Slack and Gecko Robotics.<sup class="fn"><a href="#src-55">55</a></sup></p>
+      </div>
+      <div class="caveat reveal d3" style="grid-column:1/-1">
+        <div class="hd">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 6v3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11.8" r=".85" fill="currentColor"/></svg>
+          Flagged honestly: NIM on Windows on Arm
+        </div>
+        <p>NIM microservices exist in the DGX Spark ecosystem, but Windows-on-Arm NIM support is limited and unproven so far.<sup class="fn"><a href="#src-56">56</a></sup></p>
+      </div>
+    </div>
+
+    <h3 class="reveal d2" style="margin:clamp(48px,5.6vw,72px) 0 20px">8.3 &mdash; Gaming</h3>
+    <div class="grid cols-2 reveal d2">
+      <div>
+        <ul class="ticks">
+          <li><strong>1,000+</strong> RTX games and applications already on the list.</li>
+          <li><strong>DLSS 4.5 titles at Computex</strong> included NARAKA: BLADEPOINT, Marvel Rivals and Phantom Blade Zero.</li>
+          <li><strong>Xbox PC app compatibility</strong> confirmed. Jason Ronald: &ldquo;We worked closely with NVIDIA to support a great gaming experience&hellip;&rdquo;</li>
+          <li><strong>Reflex 2 with Frame Warp</strong> and G-SYNC are listed on the platform spec page.<sup class="fn"><a href="#src-1">1</a></sup><sup class="fn"><a href="#src-52">52</a></sup><sup class="fn"><a href="#src-57">57</a></sup></li>
+        </ul>
+      </div>
+      <div class="card edge-nv">
+        <h4>What the gaming story is really for</h4>
+        <p>Gaming is the trust signal for the harder technical claim: that an Arm Windows machine can run x86 game binaries through Prism emulation without spoiling frame times. The on-stage <em>Gears of War: E-Day</em> demo (§6) was the proof point Microsoft chose to build the whole event around.</p>
+      </div>
+    </div>
+
+    <h3 class="reveal d2" style="margin:clamp(48px,5.6vw,72px) 0 20px">8.4 &mdash; Scaling the ladder, and the roadmap</h3>
+    <div class="grid cols-2 reveal d2">
+      <div class="card edge-nv">
+        <h4>DGX Spark stays the pure CUDA appliance</h4>
+        <p>The 64GB model at $4,999 clusters two units into 128GB / 200B-parameter capability over ConnectX-7 200GbE &mdash; a trick the Surface Dev Box cannot do, having no ConnectX-7.<sup class="fn"><a href="#src-9">9</a></sup></p>
+      </div>
+      <div class="card edge-nv">
+        <h4>DGX Station for Windows, Q4 2026</h4>
+        <p>The GB300 Grace Blackwell Ultra Desktop Superchip: 72-core Grace, up to 748GB coherent memory (LPDDR5X SOCAMM2 + HBM3e), 20 petaflops FP4, ConnectX-8 at 800Gb/s, and up to 1-trillion-parameter models (Llama 4 Maverick, Kimi K2.6, DeepSeek V4 Pro). NVIDIA positions it as a &ldquo;Personal AI Supercomputer&rdquo; and a &ldquo;Token Factory&rdquo; for 32+ simultaneous agents. First systems: Dell Pro Precision with GB300 and the HP ZGX Fury AI Station.<sup class="fn"><a href="#src-12">12</a></sup><sup class="fn"><a href="#src-58">58</a></sup></p>
+      </div>
+      <div class="card edge-nv">
+        <h4>MediaTek, now strategic</h4>
+        <p>NVIDIA&rsquo;s $3.5B convertible-bond investment on August 31, 2026, with NVLink Fusion access, locks in the partner that co-designed the CPU.<sup class="fn"><a href="#src-8">8</a></sup></p>
+      </div>
+      <div class="card edge-nv" style="background:linear-gradient(178deg,rgba(118,185,0,.1),rgba(118,185,0,.02))">
+        <h4>Roadmap: N2X and N3X &mdash; and R2-D2</h4>
+        <p>Huang has confirmed both next generations are planned, with the endgame a voice-driven &ldquo;Star Trek computer&rdquo;: &ldquo;I want to talk to my laptop! I want R2-D2!&hellip; Satya and I, we&rsquo;re going to walk up to our Windows PC and go &lsquo;hello, do something.&rsquo;&rdquo;<sup class="fn"><a href="#src-59">59</a></sup></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 9 — RECEPTION
+     ============================================================ -->
+<section class="sec" id="s9" aria-labelledby="h1-9">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow"><span class="n">09</span><span>Reception &amp; the wider field</span><span class="rule"></span><span class="tag">As of October 9, 2026</span></div>
+      <h2 id="h1-9">A split verdict, and <span class="grad">a missing column of numbers</span></h2>
+      <p class="deck">Praise landed on the hardware and the milestone. Skepticism landed on price and on the absence of retail benchmarks. Markets barely moved.</p>
+    </div>
+
+    <div class="grid cols-3 reveal d1">
+      <div class="card edge-nv">
+        <div class="kicker-lbl" style="color:var(--grn-lt)">The praise</div>
+        <ul class="ticks">
+          <li>&ldquo;Might be the best laptop ever made&rdquo; &mdash; Windows Central.<sup class="fn"><a href="#src-30">30</a></sup></li>
+          <li>&ldquo;Feels better than any other Windows laptop I&rsquo;ve held&rdquo; &mdash; Engadget.<sup class="fn"><a href="#src-25">25</a></sup></li>
+          <li>The CUDA-on-Windows-on-Arm milestone itself.</li>
+          <li>ServeTheHome: &ldquo;Microsoft&rsquo;s most forceful push into the professional laptop space yet.&rdquo;<sup class="fn"><a href="#src-13">13</a></sup></li>
+        </ul>
+      </div>
+      <div class="card edge-amb">
+        <div class="kicker-lbl" style="color:var(--amb)">The skepticism</div>
+        <ul class="ticks a">
+          <li>Entry price against Apple in a memory crisis &mdash; Reuters led with &ldquo;PRICE BARRIER,&rdquo; and Sag&rsquo;s line in §5.<sup class="fn"><a href="#src-35">35</a></sup></li>
+          <li>Unproven retail performance: the only hands-on data is a prototype with driver issues; retail reviews land after October 16.<sup class="fn"><a href="#src-31">31</a></sup></li>
+          <li>PCWorld: &ldquo;Nvidia has the muscle, but Qualcomm may have the better AI PC brain&rdquo; &mdash; estimated GB10-class Geekbench 6 single-core about 3,080, against Snapdragon X2 Elite near 3,950 and Apple M5 Pro near 4,350, while the GPU gap decisively favors NVIDIA.<sup class="fn"><a href="#src-60">60</a></sup></li>
+        </ul>
+      </div>
+      <div class="card flat" style="border-left:2px solid var(--ink-3)">
+        <div class="kicker-lbl">The markets</div>
+        <p>Muted day-one reaction: MSFT +0.2%, NVDA &minus;0.6% premarket.<sup class="fn"><a href="#src-61">61</a></sup></p>
+        <p>The market had priced this in earlier &mdash; when RTX Spark was announced in June, Qualcomm shares tumbled more than 10% premarket, erasing over $10B in market value.<sup class="fn"><a href="#src-61">61</a></sup></p>
+      </div>
+    </div>
+
+    <div class="card reveal d2" style="margin-top:clamp(24px,3vw,34px);border-color:rgba(76,194,255,.28)">
+      <h4><span class="sub" style="color:var(--blu)">Open questions</span>Four things this page cannot answer yet</h4>
+      <div class="grid cols-2" style="margin-top:16px">
+        <p class="small" style="color:var(--ink-2)">Can $2,599–$5,899 find buyers against a $1,999 MacBook Pro?</p>
+        <p class="small" style="color:var(--ink-2)">Will Windows-on-Arm app and anti-cheat coverage keep pace with the marketing?</p>
+        <p class="small" style="color:var(--ink-2)">Does 273 GB/s cap local-LLM ambitions? Yes for decode throughput &mdash; and that is exactly what the cloud-and-localhost routing in §7.2 is for.</p>
+        <p class="small" style="color:var(--ink-2)">Retail benchmarks: pending. Every performance figure here is a vendor claim or a prototype result.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 10 — SOURCES
+     ============================================================ -->
+<footer class="site" id="srcs" aria-labelledby="h1-10">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow"><span class="n">10</span><span>Sources</span><span class="rule"></span><span class="tag">Grouped by category</span></div>
+      <h2 id="h1-10">Every number on this page, and where it came from</h2>
+      <p class="deck">Superscripts in the copy point to the keys below. Sixty-one keys, drawn from primary vendor material, independent reviews and teardowns, chip documentation, and published benchmarks. Where two sources disagree, the copy says so.</p>
+    </div>
+
+    <div class="srccols">
+      <div class="srccol reveal d1">
+        <h3>Primary — NVIDIA &amp; Microsoft</h3>
+        <ol class="src-list">
+          <li id="src-1"><span class="id">1</span><span><a href="https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark" target="_blank" rel="noopener">NVIDIA press release, May 31, 2026 — RTX Spark and Windows agents</a><span class="u">nvidianews.nvidia.com</span></span></li>
+          <li id="src-2"><span class="id">2</span><span><a href="https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8" target="_blank" rel="noopener">Microsoft Store configurators</a> — Surface Laptop Ultra · <a href="https://www.microsoft.com/en-us/store/configure/surface-rtx-spark-dev-box/8wg5vqp0x4gr" target="_blank" rel="noopener">Surface RTX Spark Dev Box</a><span class="u">microsoft.com/en-us/store/configure</span></span></li>
+          <li id="src-4"><span class="id">4</span><span><a href="https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event/" target="_blank" rel="noopener">NVIDIA blog, October 7, 2026 — local AI, RTX Spark and the Microsoft event</a><span class="u">blogs.nvidia.com</span></span></li>
+          <li id="src-5"><span class="id">5</span><span><a href="https://nvidianews.nvidia.com/news/nvidia-puts-grace-blackwell-on-every-desk-and-at-every-ai-developers-fingertips" target="_blank" rel="noopener">NVIDIA Project DIGITS press release, January 2025</a><span class="u">nvidianews.nvidia.com</span></span></li>
+          <li id="src-6"><span class="id">6</span><span><a href="https://nvidianews.nvidia.com/news/nvidia-dgx-spark-arrives-for-worlds-ai-developers" target="_blank" rel="noopener">NVIDIA DGX Spark shipping press release</a><span class="u">nvidianews.nvidia.com</span></span></li>
+          <li id="src-10"><span class="id">10</span><span><a href="https://blogs.windows.com/windowsexperience/2026/10/07/building-windows-for-hybrid-intelligence/" target="_blank" rel="noopener">Windows Experience Blog, October 7, 2026 — &ldquo;Building Windows for hybrid intelligence&rdquo;</a><span class="u">blogs.windows.com</span></span></li>
+          <li id="src-12"><span class="id">12</span><span><a href="https://nvidianews.nvidia.com/news/nvidia-dgx-station-for-windows-puts-a-trillion-parameter-ai-supercomputer-on-every-enterprise-desk" target="_blank" rel="noopener">NVIDIA DGX Station for Windows press release</a><span class="u">nvidianews.nvidia.com</span></span></li>
+          <li id="src-21"><span class="id">21</span><span><a href="https://blogs.windows.com/windowsexperience/2026/05/31/introducing-a-powerful-new-chapter-for-windows-pcs-accelerated-by-nvidia-rtx-spark/" target="_blank" rel="noopener">Windows Experience Blog, May 31, 2026 — Windows PCs accelerated by RTX Spark</a><span class="u">blogs.windows.com</span></span></li>
+          <li id="src-22"><span class="id">22</span><span><a href="https://www.microsoft.com/en-us/surface/devices/surface-laptop-ultra" target="_blank" rel="noopener">Microsoft Surface Laptop Ultra product page + Business spec sheet</a><span class="u">microsoft.com/en-us/surface</span></span></li>
+          <li id="src-23"><span class="id">23</span><span><a href="https://blogs.windows.com/devices/2026/10/07/pre-order-our-most-powerful-surface-devices-ever/" target="_blank" rel="noopener">Microsoft Devices blog, October 7, 2026 (Ostrum; trade-in offer)</a><span class="u">blogs.windows.com/devices</span></span></li>
+          <li id="src-27"><span class="id">27</span><span><a href="https://news.microsoft.com/windows-surface-october-2026-news/" target="_blank" rel="noopener">Microsoft news hub — Windows + Surface, October 2026</a><span class="u">news.microsoft.com</span></span></li>
+          <li id="src-32"><span class="id">32</span><span><a href="https://www.microsoft.com/en-us/surface/devices/surface-rtx-spark-dev-box" target="_blank" rel="noopener">Microsoft Surface RTX Spark Dev Box product page</a><span class="u">microsoft.com/en-us/surface</span></span></li>
+          <li id="src-36"><span class="id">36</span><span><a href="https://blogs.windows.com/windowsexperience/2026/10/07/building-windows-for-hybrid-intelligence/" target="_blank" rel="noopener">Windows blog, October 7 — footnotes 5–8 (commissioned test conditions)</a><span class="u">blogs.windows.com · same as 10</span></span></li>
+          <li id="src-39"><span class="id">39</span><span><a href="https://blogs.windows.com/windowsexperience/2026/10/07/building-windows-for-hybrid-intelligence/" target="_blank" rel="noopener">Windows Experience Blog, October 7, 2026 (Davuluri — hybrid intelligence)</a><span class="u">blogs.windows.com · same as 10</span></span></li>
+          <li id="src-40"><span class="id">40</span><span><a href="https://blogs.windows.com/windowsdeveloper/2026/10/07/microsoft-execution-containers-policy-driven-containment-for-ai-agents/" target="_blank" rel="noopener">Windows Developer Blog — Microsoft Execution Containers</a><span class="u">blogs.windows.com/windowsdeveloper</span></span></li>
+          <li id="src-41"><span class="id">41</span><span><a href="https://www.microsoft.com/en-us/security/blog/2026/05/01/microsoft-agent-365-now-generally-available-expands-capabilities-and-integrations/" target="_blank" rel="noopener">Microsoft Security Blog — Agent 365 now generally available</a><span class="u">microsoft.com/en-us/security/blog</span></span></li>
+          <li id="src-42"><span class="id">42</span><span><a href="https://www.microsoft.com/en-us/microsoft-agent-365" target="_blank" rel="noopener">Microsoft Agent 365 product page</a><span class="u">microsoft.com</span></span></li>
+          <li id="src-44"><span class="id">44</span><span><a href="https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event/" target="_blank" rel="noopener">NVIDIA blog, October 7 — Davuluri quote</a><span class="u">blogs.nvidia.com · same as 4</span></span></li>
+          <li id="src-45"><span class="id">45</span><span><a href="https://commandline.microsoft.com/local-models-sandboxed-tools-github-windows/" target="_blank" rel="noopener">Microsoft Command Line — local models, sandboxed tools, GitHub on Windows</a><span class="u">commandline.microsoft.com</span></span></li>
+          <li id="src-46"><span class="id">46</span><span><a href="https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/" target="_blank" rel="noopener">GitHub blog — Project HydraFusion multi-model orchestration</a><span class="u">github.blog</span></span></li>
+          <li id="src-47"><span class="id">47</span><span><a href="https://devblogs.microsoft.com/foundry-on-windows/build-on-winml-oct-7-26/" target="_blank" rel="noopener">Foundry on Windows devblog — build on Windows ML, October 7</a><span class="u">devblogs.microsoft.com</span></span></li>
+          <li id="src-48"><span class="id">48</span><span><a href="https://blogs.windows.com/windowsdeveloper/2026/06/02/build-2026-furthering-windows-as-the-trusted-platform-for-development/" target="_blank" rel="noopener">Windows Developer Blog — Build 2026</a><span class="u">blogs.windows.com/windowsdeveloper</span></span></li>
+          <li id="src-49"><span class="id">49</span><span><a href="https://blogs.windows.com/windowsexperience/2026/10/07/building-windows-for-hybrid-intelligence/" target="_blank" rel="noopener">Windows blog — gaming on Arm</a> · <a href="https://www.tweaktown.com/news/113990/rtx-spark-will-run-hundreds-of-pc-games-at-launch-with-call-of-duty-coming-in-2027/index.html" target="_blank" rel="noopener">TweakTown — Call of Duty in 2027</a><span class="u">blogs.windows.com · tweaktown.com</span></span></li>
+          <li id="src-51"><span class="id">51</span><span><a href="https://www.dell.com/en-us/blog/dell-xps-16-creator-edition-where-nvidia-rtx-spark-meets-premium-design" target="_blank" rel="noopener">Dell blog — XPS 16 Creator Edition on RTX Spark</a><span class="u">dell.com/en-us/blog</span></span></li>
+          <li id="src-52"><span class="id">52</span><span><a href="https://www.nvidia.com/en-us/geforce/news/computex-2026-nvidia-geforce-rtx-announcements/" target="_blank" rel="noopener">GeForce — Computex 2026 RTX announcements roundup</a><span class="u">nvidia.com/en-us/geforce</span></span></li>
+          <li id="src-53"><span class="id">53</span><span><a href="https://blogs.nvidia.com/blog/rtx-ai-garage-computex-spark-local-agents/" target="_blank" rel="noopener">NVIDIA RTX AI Garage blog — Spark, local agents</a><span class="u">blogs.nvidia.com</span></span></li>
+        </ol>
+      </div>
+
+      <div class="srccol reveal d2">
+        <h3>Reviews &amp; analysis</h3>
+        <ol class="src-list">
+          <li id="src-3"><span class="id">3</span><span><a href="https://www.theverge.com/news/994714/microsoft-windows-surface-event-october-7-san-francisco" target="_blank" rel="noopener">The Verge — event coverage, October 7</a><span class="u">theverge.com</span></span></li>
+          <li id="src-7"><span class="id">7</span><span><a href="https://wccftech.com/nvidia-dgx-spark-700-usd-price-hike-memory-shortages-4699-new-pricing/" target="_blank" rel="noopener">wccftech — DGX Spark $700 price hike on memory shortages</a><span class="u">wccftech.com</span></span></li>
+          <li id="src-8"><span class="id">8</span><span><a href="https://www.reuters.com/world/asia-pacific/nvidia-invests-35-billion-mediatek-convertible-bonds-2026-08-31/" target="_blank" rel="noopener">Reuters — NVIDIA invests $3.5B in MediaTek convertible bonds</a><span class="u">reuters.com</span></span></li>
+          <li id="src-9"><span class="id">9</span><span><a href="https://www.servethehome.com/nvidia-dgx-spark-64gb-launched-and-big-128gb-gb10-price-increases/" target="_blank" rel="noopener">ServeTheHome — DGX Spark 64GB launch and 128GB price increase</a><span class="u">servethehome.com</span></span></li>
+          <li id="src-11"><span class="id">11</span><span><a href="https://www.theverge.com/gadgets/1007040/nvidias-powerful-rtx-spark-laptops-can-cost-up-to-7000" target="_blank" rel="noopener">The Verge — first RTX Spark laptops cost up to $7,000</a><span class="u">theverge.com</span></span></li>
+          <li id="src-13"><span class="id">13</span><span><a href="https://www.servethehome.com/microsoft-launches-surface-laptop-ultra-surface-rtx-spark-dev-box/" target="_blank" rel="noopener">ServeTheHome — Surface Laptop Ultra and Dev Box launch analysis</a><span class="u">servethehome.com</span></span></li>
+          <li id="src-14"><span class="id">14</span><span><a href="https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event/" target="_blank" rel="noopener">NVIDIA blog, October 7 — 600 GB/s NVLink-C2C</a><span class="u">blogs.nvidia.com · same as 4</span></span></li>
+          <li id="src-19"><span class="id">19</span><span><a href="https://www.theverge.com/tech/940589/nvidia-rtx-spark-n1-n1x-laptop-desktop-pc-cpu-gpu-ai-release-date" target="_blank" rel="noopener">The Verge — N1 / N1X deep dive</a><span class="u">theverge.com</span></span></li>
+          <li id="src-24"><span class="id">24</span><span><a href="https://www.theverge.com/tech/1006356/microsoft-surface-laptop-ultra-behind-the-scenes" target="_blank" rel="noopener">The Verge — Surface Laptop Ultra behind the scenes</a><span class="u">theverge.com</span></span></li>
+          <li id="src-25"><span class="id">25</span><span><a href="https://www.engadget.com/2280417/surface-laptop-ultra-hands-on-a-beautiful-beast-powered-by-nvidias-rtx-spark/" target="_blank" rel="noopener">Engadget — hands-on, &ldquo;a beautiful beast&rdquo;</a><span class="u">engadget.com</span></span></li>
+          <li id="src-26"><span class="id">26</span><span><a href="https://www.tomshardware.com/laptops/surface-laptop-ultra-targets-110w-tdp-for-rtx-spark-superchip-microsoft-reveals-power-budget-of-its-high-end-15-system-in-hands-on-session" target="_blank" rel="noopener">Tom&rsquo;s Hardware — 110W TDP target for the superchip</a><span class="u">tomshardware.com</span></span></li>
+          <li id="src-28"><span class="id">28</span><span><a href="https://hwbusters.com/news/the-copilot-pc-label-is-gone-from-microsofts-new-surfaces-but-the-40-tops-bar-stays/" target="_blank" rel="noopener">HW Busters — the Copilot+ label is gone, the 40-TOPS bar stays</a><span class="u">hwbusters.com</span></span></li>
+          <li id="src-29"><span class="id">29</span><span><a href="https://www.tomsguide.com/computing/laptops/microsoft-surface-laptop-ultra-rtx-spark-hands-on-review" target="_blank" rel="noopener">Tom&rsquo;s Guide — Surface Laptop Ultra hands-on</a><span class="u">tomsguide.com</span></span></li>
+          <li id="src-30"><span class="id">30</span><span><a href="https://www.windowscentral.com/hardware/surface/surface-laptop-ultra-might-be-the-best-laptop-ever-made" target="_blank" rel="noopener">Windows Central — &ldquo;might be the best laptop ever made&rdquo;</a><span class="u">windowscentral.com</span></span></li>
+          <li id="src-31"><span class="id">31</span><span><a href="https://forum.level1techs.com/t/i-ve-spent-a-month-with-nvidia-s-rtx-spark-in-microsoft-s-surface-laptop-ultra/253202" target="_blank" rel="noopener">TechPowerUp / Level1Techs — a month with a pre-release RTX Spark prototype</a><span class="u">forum.level1techs.com</span></span></li>
+          <li id="src-33"><span class="id">33</span><span><a href="https://techcrunch.com/2026/10/07/microsoft-releases-new-nvidia-chip-ai-pcs-with-revamped-windows-11/" target="_blank" rel="noopener">TechCrunch — Microsoft&rsquo;s new NVIDIA-chip AI PCs</a><span class="u">techcrunch.com</span></span></li>
+          <li id="src-34"><span class="id">34</span><span><a href="https://www.pcworld.com/article/3256085/here-are-all-the-rtx-spark-laptops-available-at-launch-going-up-to-7000.html" target="_blank" rel="noopener">PCWorld — every RTX Spark laptop available at launch</a><span class="u">pcworld.com</span></span></li>
+          <li id="src-35"><span class="id">35</span><span><a href="https://www.reuters.com/business/microsoft-nvidia-ceos-unveil-new-ai-laptop-san-francisco-event-2026-10-07/" target="_blank" rel="noopener">Reuters — launch coverage, &ldquo;PRICE BARRIER&rdquo;</a><span class="u">reuters.com</span></span></li>
+          <li id="src-38"><span class="id">38</span><span><a href="https://www.tweaktown.com/news/113990/rtx-spark-will-run-hundreds-of-pc-games-at-launch-with-call-of-duty-coming-in-2027/index.html" target="_blank" rel="noopener">TweakTown — the on-stage Gears of War demo</a><span class="u">tweaktown.com</span></span></li>
+          <li id="src-43"><span class="id">43</span><span><a href="https://www.reuters.com/business/microsoft-nvidia-ceos-unveil-new-ai-laptop-san-francisco-event-2026-10-07/" target="_blank" rel="noopener">Reuters — Huang on MXC</a><span class="u">reuters.com · same as 35</span></span></li>
+          <li id="src-50"><span class="id">50</span><span><a href="https://finance.yahoo.com/video/microsoft-reveals-new-surface-laptops-starting-1499-194617679.html" target="_blank" rel="noopener">Yahoo Finance — new Surface laptops starting at $1,499</a><span class="u">finance.yahoo.com</span></span></li>
+          <li id="src-58"><span class="id">58</span><span><a href="https://hothardware.com/news/hp-unveils-nvidia-based-workstations-laptops" target="_blank" rel="noopener">HotHardware — HP&rsquo;s NVIDIA-based workstations, incl. ZGX Fury</a><span class="u">hothardware.com</span></span></li>
+          <li id="src-59"><span class="id">59</span><span><a href="https://www.theverge.com/tech/942588/nvidia-rtx-spark-n2x-n3x-r2-d2-star-trek-star-wars-plan" target="_blank" rel="noopener">The Verge — N2X / N3X and the R2-D2 plan</a><span class="u">theverge.com</span></span></li>
+          <li id="src-60"><span class="id">60</span><span><a href="https://www.pcworld.com/article/3154920/nvidia-has-the-muscle-but-qualcomm-may-have-the-better-ai-pc-brain.html" target="_blank" rel="noopener">PCWorld — NVIDIA&rsquo;s muscle vs Qualcomm&rsquo;s AI PC brain</a><span class="u">pcworld.com</span></span></li>
+          <li id="src-61"><span class="id">61</span><span><a href="https://finance.yahoo.com/technology/article/microsoft-debuts-nvidia-powered-surface-laptop-ultra-as-it-aims-for-ai-market-185630649.649.html" target="_blank" rel="noopener">Yahoo Finance — market reaction</a><span class="u">finance.yahoo.com</span></span></li>
+        </ol>
+      </div>
+
+      <div class="srccol reveal d2">
+        <h3>Chip &amp; teardowns</h3>
+        <ol class="src-list">
+          <li id="src-15"><span class="id">15</span><span><a href="https://www.lmsys.org/blog/2025-10-13-nvidia-dgx-spark/" target="_blank" rel="noopener">LMSYS — DGX Spark review, bandwidth as the bottleneck</a><span class="u">lmsys.org</span></span></li>
+          <li id="src-16"><span class="id">16</span><span><a href="https://hc2025.hotchips.org/assets/program/conference/day2/21_nvidia_skende_final.pdf" target="_blank" rel="noopener">Hot Chips 2025 — GB10 slides (31 TFLOPS FP32, 1,000 TOPS NVFP4)</a><span class="u">hc2025.hotchips.org (PDF)</span></span></li>
+          <li id="src-17"><span class="id">17</span><span><a href="https://www.techinsights.com/blog/nvidia-gb10-superchip-advanced-packaging-analysis" target="_blank" rel="noopener">TechInsights — GB10 advanced packaging analysis</a><span class="u">techinsights.com</span></span></li>
+          <li id="src-18"><span class="id">18</span><span><a href="https://www.prnewswire.com/news-releases/mediatek-collaborates-with-nvidia-on-the-rtx-spark-to-power-the-next-wave-of-windows-pc-experiences-302786739.html" target="_blank" rel="noopener">MediaTek press release — collaboration with NVIDIA on RTX Spark</a><span class="u">prnewswire.com</span></span></li>
+          <li id="src-20"><span class="id">20</span><span><a href="https://videocardz.com/newz/nvidia-n1x-n1-laptop-chip-specifications" target="_blank" rel="noopener">VideoCardz — N1X / N1 laptop chip specifications (leak)</a><span class="u">videocardz.com</span></span></li>
+          <li id="src-57"><span class="id">57</span><span><a href="https://www.nvidia.com/en-us/products/rtx-spark/" target="_blank" rel="noopener">NVIDIA RTX Spark spec page</a><span class="u">nvidia.com/en-us/products/rtx-spark</span></span></li>
+        </ol>
+      </div>
+
+      <div class="srccol reveal d2">
+        <h3>Benchmarks &amp; developer material</h3>
+        <ol class="src-list">
+          <li id="src-37"><span class="id">37</span><span><a href="https://developer.nvidia.com/blog/how-nvidia-dgx-sparks-performance-enables-intensive-ai-tasks/" target="_blank" rel="noopener">NVIDIA developer blog — how DGX Spark&rsquo;s performance enables intensive AI tasks</a><span class="u">developer.nvidia.com</span></span></li>
+          <li id="src-54"><span class="id">54</span><span><a href="https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/index.html" target="_blank" rel="noopener">NVIDIA RTX Spark porting guide</a><span class="u">docs.nvidia.com</span></span></li>
+          <li id="src-55"><span class="id">55</span><span><a href="https://developer.nvidia.com/blog/add-runtime-controls-to-ai-agents-with-nvidia-openshell/" target="_blank" rel="noopener">NVIDIA developer blog — runtime controls for agents with OpenShell</a><span class="u">developer.nvidia.com</span></span></li>
+          <li id="src-56"><span class="id">56</span><span><a href="https://forums.developer.nvidia.com/t/none-of-the-biology-nim-containers-can-run-on-dgx-spark-correct/349486" target="_blank" rel="noopener">NVIDIA developer forums — NIM containers on GB10 (limits discussed)</a><span class="u">forums.developer.nvidia.com</span></span></li>
+        </ol>
+        <div class="caveat" style="margin-top:24px">
+          <div class="hd">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.6v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11.1" r=".8" fill="currentColor"/></svg>
+            How to read these sources
+          </div>
+          <p>Keys 10, 36, 39 and 44 are the same October 7 Windows Experience Blog; keys 4, 14 and 43–44 trace back to NVIDIA&rsquo;s October 7 blog and Reuters. Vendor material is marked as such in the copy: capability targets, battery runtime, thermal multiples, the efficiency claim and every comparison multiplier are vendor figures, not independent measurements.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="colophon">
+      <p>Compiled October 9, 2026. Prices are MSRP in US dollars. Retail reviews are pending as devices ship October 16, 2026 — performance figures on this page are vendor claims, commissioned tests, or results from pre-release and adjacent hardware.</p>
+      <div class="stamp">RTX Spark field guide<br>Single file · no trackers · no analytics</div>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- scroll progress ---------- */
+  var bar = document.getElementById("progress");
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-links a"));
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+      bar.style.width = (p * 100).toFixed(2) + "%";
+      drawTimeline();
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll);
+
+  /* ---------- scrollspy ---------- */
+  var secs = Array.prototype.slice.call(document.querySelectorAll("section[id], footer[id]"));
+  if ("IntersectionObserver" in window) {
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var id = en.target.id;
+        navLinks.forEach(function(a){
+          var on = a.getAttribute("href") === "#" + id;
+          if (on) a.setAttribute("aria-current","true"); else a.removeAttribute("aria-current");
+        });
+      });
+    }, {rootMargin:"-45% 0px -50% 0px", threshold:0});
+    secs.forEach(function(s){ spy.observe(s); });
+  }
+
+  /* ---------- reveal on enter ---------- */
+  var revs = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if ("IntersectionObserver" in window && !reduce) {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add("in"); ro.unobserve(en.target); }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:0.06});
+    revs.forEach(function(el){ ro.observe(el); });
+  } else {
+    revs.forEach(function(el){ el.classList.add("in"); });
+  }
+
+  /* ---------- animated counters ---------- */
+  function fmt(v, sep, dec){
+    var s = dec ? v.toFixed(dec) : String(Math.round(v));
+    if (sep){ var parts = s.split("."); parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); s = parts.join("."); }
+    return s;
+  }
+  function countUp(el){
+    var target = parseFloat(el.getAttribute("data-count"));
+    var dec = parseInt(el.getAttribute("data-dec") || "0", 10);
+    var sep = el.getAttribute("data-sep") === "1";
+    if (reduce){ el.textContent = fmt(target, sep, dec); return; }
+    var dur = 1500, t0 = null;
+    function step(ts){
+      if (t0 === null) t0 = ts;
+      var k = Math.min(1, (ts - t0) / dur);
+      var eased = 1 - Math.pow(1 - k, 3);
+      el.textContent = fmt(target * eased, sep, dec);
+      if (k < 1) requestAnimationFrame(step); else el.textContent = fmt(target, sep, dec);
+    }
+    requestAnimationFrame(step);
+  }
+  var statBand = document.getElementById("stats");
+  if (statBand){
+    var nums = Array.prototype.slice.call(statBand.querySelectorAll(".n"));
+    if ("IntersectionObserver" in window){
+      var co = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting){ nums.forEach(countUp); co.disconnect(); }
+        });
+      }, {threshold:0.3});
+      co.observe(statBand);
+    } else { nums.forEach(countUp); }
+  }
+
+  /* ---------- timeline rail draw ---------- */
+  var tl = document.getElementById("timeline");
+  var tlFill = document.getElementById("tlFill");
+  var tlItems = tl ? Array.prototype.slice.call(tl.querySelectorAll(".tl-item")) : [];
+  function drawTimeline(){
+    if (!tl || !tlFill) return;
+    var r = tl.getBoundingClientRect();
+    var anchor = window.innerHeight * 0.55;
+    var p = (anchor - r.top) / r.height;
+    p = Math.max(0, Math.min(1, p));
+    tlFill.style.transform = "scaleY(" + p.toFixed(4) + ")";
+    for (var i=0;i<tlItems.length;i++){
+      var d = tlItems[i].querySelector(".dot").getBoundingClientRect();
+      if (d.top < anchor + 8 && !tlItems[i].classList.contains("on")) tlItems[i].classList.add("on");
+    }
+  }
+  drawTimeline();
+
+  /* ---------- benchmark bars ---------- */
+  var bench = document.getElementById("bench");
+  if (bench){
+    if ("IntersectionObserver" in window){
+      var bo = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting){ bench.classList.add("in"); bo.disconnect(); }
+        });
+      }, {threshold:0.25});
+      bo.observe(bench);
+    } else { bench.classList.add("in"); }
+  }
+
+  /* ---------- interactive die diagram ---------- */
+  var INFO = {
+    cpu: {
+      t: "Grace CPU — 20 Arm cores, co-designed with MediaTek",
+      b: "Ten Cortex-X925 performance cores and ten Cortex-A725 efficiency cores. MediaTek co-designed the block: &ldquo;With RTX Spark, MediaTek and NVIDIA bring unprecedented local AI supercomputing directly to consumer PCs,&rdquo; said SVP Vince Hu.<sup class='fn'><a href='#src-18'>18</a></sup> Microsoft adds Workload Profile Scheduling on top to place threads across the 20 cores.<sup class='fn'><a href='#src-21'>21</a></sup>"
+    },
+    gpu: {
+      t: "Blackwell RTX — 6,144 CUDA cores across 48 SMs",
+      b: "Fifth-generation Tensor Cores with FP4 support, fourth-generation RT cores, and the whole GeForce stack: DLSS, OptiX, TensorRT, Reflex. The launch cut-down carries 5,120 cores over 40 SMs. Hot Chips 2025 slides list about 31 TFLOPS FP32 and 1,000 TOPS NVFP4 for the underlying GB10.<sup class='fn'><a href='#src-16'>16</a></sup>"
+    },
+    link: {
+      t: "NVLink-C2C — about 600 GB/s between the dies",
+      b: "Five times PCIe Gen 5 bandwidth, and the reason a single memory pool can be shared coherently between CPU and GPU without the copy penalty a discrete graphics card pays.<sup class='fn'><a href='#src-14'>14</a></sup> It is what makes &ldquo;unified memory&rdquo; more than a marketing phrase here.<sup class='fn'><a href='#src-18'></a></sup>"
+    },
+    mem: {
+      t: "LPDDR5X pool — up to 128GB, 256-bit, 273 GB/s",
+      b: "One pool for CPU and GPU, which is what lets a laptop hold a 120B-parameter model in memory at all. It is also the ceiling: LMSYS measured decode throughput as bandwidth-bound and called &ldquo;273 GB/s the key bottleneck.&rdquo;<sup class='fn'><a href='#src-15'>15</a></sup> Fast at reading prompts, limited at producing tokens."
+    }
+  };
+  var dieTitle = document.getElementById("dieTitle");
+  var dieBody = document.getElementById("dieBody");
+  var blks = Array.prototype.slice.call(document.querySelectorAll(".blk[data-blk]"));
+  var legendBtns = Array.prototype.slice.call(document.querySelectorAll(".die-legend button"));
+  function select(key){
+    var d = INFO[key];
+    if (!d || !dieTitle) return;
+    dieTitle.innerHTML = d.t;
+    dieBody.innerHTML = d.b;
+    blks.forEach(function(b){
+      var on = b.getAttribute("data-blk") === key;
+      b.classList.toggle("sel", on);
+      var sh = b.querySelector("rect.shape");
+      if (sh) sh.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    legendBtns.forEach(function(b){
+      b.setAttribute("aria-pressed", b.getAttribute("data-blk") === key ? "true" : "false");
+    });
+  }
+  blks.forEach(function(b){
+    var k = b.getAttribute("data-blk");
+    b.addEventListener("mouseenter", function(){ select(k); });
+    b.addEventListener("click", function(){ select(k); });
+    b.addEventListener("focus", function(){ select(k); });
+    b.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar"){ e.preventDefault(); select(k); }
+    });
+  });
+  legendBtns.forEach(function(b){
+    var k = b.getAttribute("data-blk");
+    b.addEventListener("click", function(){ select(k); });
+    b.addEventListener("mouseenter", function(){ select(k); });
+  });
+
+  /* ---------- smooth anchor scroll with nav offset ---------- */
+  navLinks.concat(Array.prototype.slice.call(document.querySelectorAll('a[href^="#s"], a[href^="#src"]'))).forEach(function(a){
+    a.addEventListener("click", function(e){
+      var id = a.getAttribute("href").slice(1);
+      var t = id && document.getElementById(id);
+      if (!t) return;
+      e.preventDefault();
+      var top = t.getBoundingClientRect().top + window.pageYOffset - 72;
+      window.scrollTo({top: top, behavior: reduce ? "auto" : "smooth"});
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
+      t.setAttribute("tabindex","-1");
+      setTimeout(function(){ t.focus({preventScroll:true}); }, reduce ? 0 : 620);
+    });
+  });
+
+  onScroll();
+})();
+</script>
+</body>
+</html>
